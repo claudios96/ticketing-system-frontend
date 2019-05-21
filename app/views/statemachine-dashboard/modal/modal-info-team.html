@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h2><i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Team #{{formItem.id}} - Details</h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4><i class="fas fa-envelope"></i>&nbsp;Details</h4>
+            <p><strong>Team name: </strong><u>{{formItem['name']}}</u></p>
+            <p><strong>Problem area: </strong><u>{{formItem.problemArea}}</u></p>
+            <p><strong>Team Leader: </strong> <p data-ng-init="getLeaderById(formItem.id)">
+            <div>{{selectedLeader.name + ' ' + selectedLeader.surname}}</div>
+            </p><br>
+
+            <p><strong>Team Members:</strong>
+            <p data-ng-init="getMembersById(formItem.id)">
+            <div ng-repeat="item in selectedMembers">
+                <div>   - {{item.name + ' ' + item.surname}}</div>
+            </div>
+            </p>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Ok</button>
+    </div>
+</div>
+

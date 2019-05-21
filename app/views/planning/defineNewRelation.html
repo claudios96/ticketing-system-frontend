@@ -1,0 +1,45 @@
+
+<!--<ng-include src="'html/sidenav.html'"></ng-include>-->
+
+
+<div ng-controller="ctrlNewRelation" style="padding-left:20%;padding-top: 3%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.95;width: 75%;height: 15%">
+
+        <h1 style="text-align: center">Define new relation</h1>
+
+        <md-content  style="background-color: white; padding-top: 3%; padding-left: 30%">
+            <form name="relationForm" style="color: #1d2124">
+
+
+                <div layout-gt-sm="row">
+                    <md-input-container  >
+                        <label style="font-size: large">Relation name</label>
+                        <input  style="width: 300px" ng-minlength="3" ng-required="true"   name="rel" ng-model="name">
+                        <div ng-messages="relationForm.rel.$error">
+                            <div ng-message="required">Must insert a name for the new relation (min 3 char).</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container style="padding-left: 15%">
+
+                                    <md-checkbox ng-model="cyclic" aria-label="Checkbox 1" style="color: gray">Is cyclic</md-checkbox>
+
+                    </md-input-container>
+                </div>
+
+
+
+
+                <div style="padding-left: 12%">
+                    <button style="width: 150px" ng-disabled="relationForm.$invalid" ng-click="createNewRel()" type="button" class="btn btn-dark" style="text-align: center">Submit</button>
+                </div>
+
+
+            </form>
+        </md-content>
+
+    </div>
+</div>
+

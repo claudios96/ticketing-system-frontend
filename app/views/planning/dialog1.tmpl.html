@@ -1,0 +1,115 @@
+
+<md-dialog aria-label="Details ticket">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools" style="background-color: #457AB2">
+                <h2>Details ticket</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()" style="color: white">
+                    <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+                    <md-icon md-font-icon="fa-close" class="fa **fa-md**"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height  md-border-bottom>
+                <md-tab label="Details">
+                    <md-content class="md-padding">
+                       <table class="table table-light">
+                         <tr> <td>ID</td>
+                                <td> {{ticket.id}} </td>
+                            </tr>
+                            <tr> <td>Title</td>
+                                <td> {{ticket.title}} </td>
+                            </tr>
+                            <tr> <td>Status</td>
+                                <td> {{ticket.currentTicketStatus}} </td>
+                            </tr>
+                            <tr> <td><p>Creation date</p></td>
+                                <td> {{ticket.creationTimestamp}} </td>
+                            </tr>
+                            <tr> <td>Category</td>
+                                <td> {{ticket.category}} </td>
+                            </tr>
+                            <tr> <td>Target</td>
+                                <td> {{ticket.target.name}} </td>
+                            </tr>
+
+                            <tr> <td>Customer</td>
+                                <td> {{ticket.customer.username}} </td>
+                            </tr>
+                            <tr> <td>Customer Priority</td>
+                                <td> {{ticket.customerPriority}} </td>
+                            </tr>
+                            <tr> <td>Description</td>
+                                <td><md-input-container>
+                                    <textarea cols="50" class="autogrow" readonly>{{ticket.description}}
+                                    </textarea>
+                                </md-input-container></td>
+                            </tr>
+
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab label="show relations" ng-click="relationAllForThis()">
+                    <md-content class="md-padding">
+                      <table class="table table-light">
+                            <tr> <td>Equality</td>
+                                <td>{{ticket.sameTicket.id}} {{ticket.sameTicket.title}}</td>
+                            </tr>
+                            <tr> <td>Dependency</td>
+                                <td><div ng-repeat = "x in  ticket.dependentTickets">
+                                    {{x.id}} {{x.title}}
+                                </div></td>
+                            </tr>
+                            <tr> <td>Regression</td>
+                                <td><div ng-repeat = "y in  ticket.regressionTicketsGenerator">
+                                    {{y.id}} {{y.title}}
+                                </div></td>
+                            </tr>
+                            <tr ng-repeat = "y in relationName">
+                                <td>{{y.name}}</td>
+                                <td ng-repeat="rel in relTicket | filter: y.name:rel.name">
+                                    {{rel.sonTicket.id}} {{rel.sonTicket.title}}
+                                </td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+          <div ng-controller="ctrlRelation">
+                <md-tab label="create relation">
+                    <md-content class="md-padding">
+                        <table align="center" class="table table-dark">
+                        <thead>
+                        <th>Choose a relation</th>
+                        <th>Choose a ticket</th>
+                        </thead>
+                       <tr>
+
+                        <td><dir-select-relation > </dir-select-relation></td>
+                        <td><dir-select-ticket> </dir-select-ticket></td>
+                           <td><button ng-click="createRel(null,ticket.id)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
+
+                      </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+</div>
+
+            </md-tabs>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <md-button >
+
+            </md-button>
+
+            <span flex></span>
+
+            <md-button ng-click="answer('not useful')" style="margin-right:20px;" >
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

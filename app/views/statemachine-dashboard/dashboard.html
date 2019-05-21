@@ -1,0 +1,114 @@
+<div class="row" style="height: 900px; padding-top: 30px;">
+    <div class="col col-md-12">
+        <form style="min-height: 60%">
+            <div class="container"></div>
+            <p>Current target: <select id="targets"
+                                       name="targets"
+                                       class="btn btn-default"
+                                       ng-options="t as t.name
+                                        for
+                                        t in targets track by t.id"
+                                       ng-model="selectedTarget"
+                                       ng-change="updateTarget()">
+            </select>&nbsp;
+                Current State: <select id="states"
+                                       name="states"
+                                       class="btn btn-default"
+                                       ng-options="ns
+                                        for
+                                        ns in actualStates "
+                                       ng-model="currentState"
+                                       ng-change="updateCurrentState(currentState)">
+                </select></p>
+            <div class="row">
+
+                <div class="col col-sm-4" data-drop="true" data-jqyoui-options>
+                    <h3>{{currentState}}</h3>
+                    <div class="panel panel-primary" ng-repeat="t in myTickets" ng-if="t.currentTicketStatus == currentState && t.target.name == selectedTarget.name" ng-controller="modalController"
+                         data-drag="true" ng-model="t" data-jqyoui-options="{revert: 'invalid', refreshPosition: 'true'}"
+                         jqyoui-draggable='{animate: true, onStart:"setTicketToChange({ticket: t})"}'>
+                        <div class="panel-heading" ng-style="{ 'background-color' : ttlColor(t) }">
+                            <button class="btn btn-xs btn-default" ng-click="execution[$index]=!execution[$index]" ng-hide="execution[$index]">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <button class="btn btn-xs btn-default" ng-click="execution[$index]=!execution[$index]" ng-hide="!execution[$index]">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            Ticket #{{t.id}}
+                            <button title="Ticket information" ng-click="showInfoForm(t)" class="btn btn-xs btn-default" style="float: right;">
+                                <i class="fa fa-info-circle icon-small"></i>
+                            </button>
+                            <button title="See ticket attachment " ng-if="t.attachedFile" ng-click="showImage(t)" class="btn btn-xs btn-default"
+                                    style="float: right;">
+                                <i class="fa fa-image"></i>
+                            </button>
+                            <button title="Comment Ticket"  ng-click="showMessageForm(t)" class="btn btn-xs btn-default"
+                                    style="float: right;">
+                                <i class="fa fa-comments"></i>
+                            </button>
+                            <button title="TTL information" class="btn btn-xs btn-default" style="float: right;"  ng-click="showTTLForm(t)">
+                                <i class="fa fa-clock-o"></i>
+                            </button>
+                        </div>
+                        <div class="panel-body" style="font-size: 11px;" ng-show="execution[$index]">
+                            <!--ng-class="{'animationDisplay':visible[$index]}"-->
+                            Title: {{t.title}}<br>
+                            Date: {{t.creationTimestamp}}<br>
+                            Presumed Priority : {{t.customerPriority}}<br>
+                            Priority: {{t.actualPriority || "To Assign"}}<br>
+                            Presumed Category: {{t.presumedType}}<br>
+                            Actual Category: {{t.actualType || "To Assign"}}<br>
+                            Difficulty: {{t.difficulty || "To Assign"}}<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-sm-4" ng-repeat="state in states[2]"
+                     data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'changeTicketState({nextState: state})'}"
+                ng-style="">
+                    <h3>{{state}}</h3>
+                    <div  class="panel panel-primary" ng-repeat="t in myTickets" ng-if="t.currentTicketStatus == state && t.target.name == selectedTarget.name" ng-controller="modalController"
+                         data-drag="false" ng-model="t" data-jqyoui-options="{revert: 'invalid', refreshPosition: 'true'}"
+                         jqyoui-draggable='{animate: true, onStart:"setTicketToChange({ticket: t})"}'>
+
+                        <div class="panel-heading" ng-style="{ 'background-color' : ttlColor(t) }" >
+                            <button class="btn btn-xs btn-default" ng-click="execution[$index]=!execution[$index]" ng-hide="execution[$index]">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <button class="btn btn-xs btn-default" ng-click="execution[$index]=!execution[$index]" ng-hide="!execution[$index]">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            Ticket #{{t.id}}
+                            <button title="Ticket information" ng-click="showInfoForm(t)" class="btn btn-xs btn-default" style="float: right;">
+                                <i class="fa fa-info-circle icon-small"></i>
+                            </button>
+                            <button title="See ticket attachment " ng-if="t.attachedFile" ng-click="showImage(t)" class="btn btn-xs btn-default"
+                                    style="float: right;">
+                                <i class="fa fa-image"></i>
+                            </button>
+                            <button  title="Comment Ticket" ng-click="showMessageForm(t)" class="btn btn-xs btn-default"
+                                    style="float: right;">
+                                <i class="fa fa-comments"></i>
+                            </button>
+                            <button title="TTL information"  class="btn btn-xs btn-default" style="float: right;" ng-click="showTTLForm(t)">
+                                <i class="fa fa-clock-o"></i>
+                            </button>
+                        </div>
+                        <div class="panel-body" style="font-size: 11px;" ng-show="execution[$index]">
+                            <!--ng-class="{'animationDisplay':visible[$index]}"-->
+                            Title: {{t.title}}<br>
+                            Date: {{t.creationTimestamp}}<br>
+                            Presumed Priority : {{t.customerPriority}}<br>
+                            Priority: {{t.actualPriority || "To Assign"}}<br>
+                            Presumed Category: {{t.presumedType}}<br>
+                            Actual Category: {{t.actualType || "To Assign"}}<br>
+                            Difficulty: {{t.difficulty || "To Assign"}}<br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

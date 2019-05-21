@@ -1,0 +1,19 @@
+
+
+<select  id="selRel"  ng-model ="relation" class="btn btn-default" ng-click="valueRelation(relation, ticket.id)">
+    <option  ng-repeat="p in rel track by p" ng-value="p">{{p}}</option>
+    <option ng-repeat="s in allRelation track by s.name" ng-value="s.name">{{s.name}}</option>
+</select>
+
+
+
+<!--
+<ui-select  id="selRel" style="color: black"  ng-model="relation"  ng-click="valueRelation(relation, ticket.id)">
+    <ui-select-match allow-clear="false" placeholder="Seleziona tipologia utente">
+        {{s.name}}
+    </ui-select-match>
+    <ui-select-choices  style="color: black" repeat="p in rel track by p" value="{{p}}">
+        <span ng-bind="p"></span>
+    </ui-select-choices>
+</ui-select>
+-->

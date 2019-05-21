@@ -1,0 +1,44 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Modifica Prodotto:
+                <div class="entityname"> {{ctrl.currentGroup.name}}</div>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Modifica Nome Gruppo</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form name="formEditGroup" role="form">
+                                <div class="form-group"
+                                     ng-class="{'has-error': formEditGroup.group.$invalid && formEditTeam.group.$touched}">
+                                    <label>Gruppo</label>
+                                    <input name="group" class="form-control" placeholder="Modifica nome del Gruppo"
+                                           ng-model="ctrl.currentGroup.name" required>
+                                </div>
+                            </form>
+
+                            <button type="button" class="btn btn-primary"
+                                    ng-disabled="!(!formEditGroup.$invalid && hasPermission('group_update'))"
+                                    ng-click="ctrl.updateGroup()">Modifica Gruppo
+                            </button>
+                            <button type="button" class="btn btn-danger" ui-sref="group.list">Annulla</button>
+                            <div>{{ctrl.currentTeam}}</div>
+                        </div>
+
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>

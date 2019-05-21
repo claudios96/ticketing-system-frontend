@@ -1,0 +1,61 @@
+<ul class="nav navbar-top-links navbar-right">
+    <li><div class="entityname"><strong>{{currentUser.username}}</strong></div></li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-lock fa-fw"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-alerts">
+            <li>
+                <a ui-sref="user.info({userId:currentUser.userId})">
+                    <div>
+                        <i class="fa fa-user fa-fw"></i> Tipo Utente:
+                        <div class="entityname"><strong>{{currentUser.userRole}}</strong></div>
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a ui-sref="user.info({userId:currentUser.userId})">
+                    <div>
+                        <i class="fa fa-users fa-fw"></i> Ruoli Utente:
+                    </div>
+                </a>
+            </li>
+            <ul>
+                <li ng-repeat="a in currentUser.authorities" class="authority-list">
+                    <div class="entityname">
+                        <small><strong>{{a.authority}}</strong></small>
+                    </div>
+                </li>
+            </ul>
+        </ul>
+        <!-- /.dropdown-->
+    </li>
+    <!-- /.dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li>
+                <a>
+                    <div>
+                        <i class="fa fa-user fa-fw"></i> Utente:
+                        <div class="entityname"><strong>{{currentUser.username}}</strong></div>
+                    </div>
+                </a>
+            </li>
+            <li><a ui-sref="user.info({userId:currentUser.userId})"><i class="fa fa-user fa-fw"></i> Profilo Utente</a>
+            </li>
+            </li>
+            <li class="divider"></li>
+            <li ng-if="!$root.isAuthenticated"><a ui-sref="login"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+            <li ng-if="$root.isAuthenticated"><a ui-sref="logout" ng-click="Logout()"><i
+                    class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </li>
+        </ul>
+        <!-- /.dropdown-user -->
+    </li>
+    <!-- /.dropdown -->
+</ul>
+

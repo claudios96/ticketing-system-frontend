@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Effettua il Login</h3>
+                </div>
+                <div class="panel-body">
+                    <form name="loginForm" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input ng-model="ctrl.authRequest.username"
+                                       class="form-control" placeholder="Username"
+                                       type="text" autofocus required>
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="ctrl.authRequest.password"
+                                       class="form-control" placeholder="Password"
+                                       name="text" type="password" value="" required
+                                >
+                            </div>
+                        </fieldset>
+                    </form>
+                    <!-- Change this to a button or input when using this as a form -->
+                    <button ng-click="ctrl.doLogin()" ng-disabled="loginForm.$invalid || loginForm.$pending"
+                            class="btn btn-lg btn-success btn-block">Login
+                    </button>
+
+                </div>
+            </div>
+            <div ng-show="ctrl.authMessage.length">
+                <div class="alert alert-danger">
+                    {{ctrl.authMessage}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,285 @@
+<!-- parametri:
+    sid {principal o no}
+    tipo (team, prodotto, ticket)
+    id entità (id team,...)
+ -->
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 28px;
+    }
+
+    .switch input {
+        display: none;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
+
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Crea nuovo permesso per un {{ctrl.tipo}}</h1>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">Permessi relativi all'oggetto {{ctrl.tipo}}</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p class="form-control-static" ng-if="ctrl.tipo === 'team'"><label> {{ctrl.tipo}}
+                                ID: <label class="entityname"> {{ctrl.currentObject.domain_object_id}}</label> </label>
+                            </p>
+                            <p class="form-control-static" ng-if="ctrl.tipo === 'ticket'"><label>{{ctrl.tipo}}
+                                ID: <label class="entityname">{{ctrl.currentObject.domain_object_id}}</label></label>
+                            </p>
+                            <p class="form-control-static" ng-if="ctrl.tipo === 'product'"><label>{{ctrl.tipo}}
+                                ID: <label class="entityname"> {{ctrl.currentObject.domain_object_id}}</label></label>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="form-control-static">Utilizza User:</label>
+                                <input type="checkbox" ng-model="ctrl.useUserForPermission"
+                                       ng-click="ctrl.changePrincipalFlag()">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group" ng-show="!ctrl.useUserForPermission">
+                                <label>Valore SID:</label>
+                                <select class="form-control"
+                                        ng-options="s.id as s.sid for s in ctrl.sidList"
+                                        ng-model="ctrl.currentObject.sid.id"
+                                        ng-required="true">
+                                </select>
+                            </div>
+                            <div class="form-group" ng-show="ctrl.useUserForPermission">
+                                <label>Valore User:</label>
+                                <select class="form-control" placeholder="Valore User"
+                                        ng-options="u.id as u.username for u in ctrl.usersList"
+                                        ng-model="ctrl.currentObject.sid.id">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Deseleziona {{ctrl.tipo}}</label>
+                                <p>
+                                    <button ng-disabled="!ctrl.currentObject.domain_object_id" class="btn btn-danger"
+                                            ng-click="ctrl.deselectObject()"><i
+                                            class="fa fa-arrow-down"></i>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-control-static">Permesso di lettura 'R':</label>
+                                    <input type="checkbox" ng-model="ctrl.currentObject.perms[0].grant">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-control-static">Permesso di scrittura 'W':</label>
+                                    <input type="checkbox" ng-model="ctrl.currentObject.perms[1].grant">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-control-static">Permesso di creazione 'C':</label>
+                                    <input type="checkbox" ng-model="ctrl.currentObject.perms[2].grant">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-control-static">Permesso di cancellazione 'D':</label>
+                                    <input type="checkbox" ng-model="ctrl.currentObject.perms[3].grant">
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Elenco {{ctrl.tipo}}</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3>Seleziona {{ctrl.tipo}}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="lista-team" class="col-lg-12" ng-if="ctrl.tipo === 'team'">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table datatable="ng" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">ID</th>
+                                            <th class="col-md-10">Nome del Team</th>
+                                            <th class="col-md-1"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="t in ctrl.objects">
+                                            <td>{{t.id}}</td>
+                                            <td>{{t.name}}</td>
+                                            <td>
+                                                <button ng-disabled="ctrl.isSelected(t.id)" class="btn btn-success"
+                                                        ng-click="ctrl.selezionaOggetti(t)"><i
+                                                        class="fa fa-arrow-up"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                        </div>
+
+                        <!-- Tabella se ticket-->
+
+                        <div class="col-lg-12" ng-if="ctrl.tipo === 'ticket'">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table datatable="ng" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">ID</th>
+                                            <th class="col-md-8">Soggetto del Ticket</th>
+                                            <th class="col-md-1">ID Prodotto</th>
+                                            <th class="col-md-1">ID Customer</th>
+                                            <th class="col-md-1"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="t in ctrl.objects">
+                                            <td>{{t.id}}</td>
+                                            <td>{{t.title}}</td>
+                                            <td>{{t.target}}</td>
+                                            <td>{{t.assignee}}</td>
+                                            <td>
+                                                <button ng-disabled="ctrl.isSelected(t.id)" class="btn btn-success"
+                                                        ng-click="ctrl.selezionaOggetti(t)"><i
+                                                        class="fa fa-arrow-up"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                        </div>
+
+                        <!-- Tabella se prodotti-->
+
+                        <div class="col-lg-12" ng-if="ctrl.tipo === 'product'">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table datatable="ng" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">ID</th>
+                                            <th class="col-md-8">Nome del Prodotto</th>
+                                            <th class="col-md-2">Versione</th>
+                                            <th class="col-md-1"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="t in ctrl.objects">
+                                            <td>{{t.id}}</td>
+                                            <td>{{t.name}}</td>
+                                            <td>{{t.version}}</td>
+                                            <td>
+                                                <button ng-disabled="ctrl.isSelected(t.id)" class="btn btn-success"
+                                                        ng-click="ctrl.selezionaOggetti(t)"><i
+                                                        class="fa fa-arrow-up"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-primary"
+                    ng-click="ctrl.createPermission(ctrl.currentObject)"
+                    ng-disabled="!ctrl.currentObject.domain_object_id || !ctrl.currentObject.sid.id || hasPermission(ctrl.permissionACL)"
+            >
+                Crea Permesso
+            </button>
+            <button class="btn btn-danger" ng-click="ctrl.resetFields()">Reset Campi</button>
+        </div>
+    </div>
+
+</div>

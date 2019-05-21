@@ -1,0 +1,51 @@
+<!--<ng-include src="'html/sidenav.html'"></ng-include>-->
+
+<div ng-controller="ctrlRelation">
+    <form name="formRel">
+<div layout="column" style="text-align: center;color:black;padding-top: 3%;padding-left: 3%;padding-right: 3%" ng-cloak>
+
+
+
+    <div>
+
+        <table  class="table table-dark" style="width: 100%">
+            <thead style="display: table; width: calc(100% - 17px)">
+            <tr style="text-align: center; display: table ; width: 100%">
+                <th ></th>
+                <th ></th>
+                <th ><h2 style="color:black">Create relation</h2></th>
+                <th ></th>
+                <th ></th>
+
+            </tr>
+
+            <tr style="text-align: center; display: table ; width: 100%">
+                <th scope="col" style="width:20%">Identification</th>
+                <th scope="col" style="width:20%">Title</th>
+                <th scope="col" style="width:20%">Define Relation</th>
+                <th scope="col" style="width:20%">Choose ticket</th>
+                <th scope="col" style="width:20%"> </th>
+            </tr>
+            </thead>
+            <tbody style="display: block; overflow-y: scroll; max-height: 400px">
+            <tr ng-repeat = "ticket in ticketsForRel" style="text-align: center; display: table ; width: 100%">
+                <td style=" width: 20%"> {{ticket.id}}</td>
+                <td style=" width: 20%"> {{ticket.title}} </td>
+
+
+                <td style="width: 20%"><dir-select-relation > </dir-select-relation></td>
+                <td style="width: 20%"><dir-select-ticket> </dir-select-ticket></td>
+                <td style="width: 20%">
+                    <button ng-disabled="formRel.$invalid" ng-click="createRel($index,null)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button>
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+    </form>
+</div>

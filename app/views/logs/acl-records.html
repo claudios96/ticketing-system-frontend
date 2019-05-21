@@ -1,0 +1,91 @@
+<div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Access Control List Logs</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">Filtri</div>
+                <div class="panel-body">
+                    <form class="form">
+
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>Filtra per SID</label>
+                                <input class="form-control" ng-model="ctrl.search.sid">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>Filtra per tipo classe</label>
+                                <input class="form-control" ng-model="ctrl.search.type">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label><input type="checkbox" ng-model="ctrl.search.granting"> Visualizza solo
+                                    true</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">ACL Records</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table datatable="ng" class="table table-striped table-bordered" dt-options="dtOptions"
+                               dt-column-defs="dtColumnDefs">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1">#</th>
+                                <th class="col-md-1">Esito</th>
+                                <th class="col-md-5">Tipo</th>
+                                <th class="col-md-1">ID tipo</th>
+                                <th class="col-md-1">Mask</th>
+                                <th class="col-md-2">SID</th>
+                                <th class="col-md-1">Data ricezione</th>
+                                <th class="col-md-1"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="r in ctrl.aclRecords | filter:ctrl.search">
+                                <td>{{r.id}}</td>
+                                <td>{{r.granting}}</td>
+                                <td>{{r.type}}</td>
+                                <td>{{r.type_id}}</td>
+                                <td>{{r.permission | PermissionMaskFilter}}</td>
+                                <td>{{r.sid}}</td>
+                                <td>{{r.timestamp | date}}</td>
+                                <td>
+                                    <button class="btn btn-danger" title="Elimina" ng-click="ctrl.removeRecord(r.id)"><i
+                                            class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <button class="btn btn-primary default" ng-click="ctrl.refreshRecords()">Aggiorna records</button>
+                <button class="btn btn-danger" ng-click="ctrl.removeAllRecords()"
+                        ng-disabled="!hasPermission('log_delete')">Rimuovi Tutti i Logs
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.panel -->
+
+
+</div>

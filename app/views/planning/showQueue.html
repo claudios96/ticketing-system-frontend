@@ -1,0 +1,44 @@
+<body>
+
+<!--<ng-include src="'html/sidenav.html'"></ng-include>-->
+
+
+<form name="prodShowQueue">
+    <div layout="column" style="text-align: center;color:black;padding-top: 3%;padding-left: 3%;padding-right: 3%" ng-controller="ctrlQueue" >
+
+        <div >
+            <table class="table table-dark" style="width: 100%">
+                <thead style="display: table; width: calc(100% - 17px)">
+                    <tr style="text-align: center; display: table ; width: 100%">
+                        <th ></th>
+                        <th ></th>
+                        <th ><h2 style="color:black">Tickets Queue</h2></th>
+                        <th ></th>
+                        <th ></th>
+
+                    </tr>
+                    <tr style="text-align: center; display: table ; width: 100%">
+                        <th style="width:20%"> ID </th>
+                        <th style="width:20%"> Title </th>
+                        <th style="width:20%"> Description </th>
+                        <th style="width:20%"> Date Starting Pending</th>
+                        <th style="width:20%"> Rank </th>
+                    </tr>
+                </thead>
+                <tbody style="display: block; overflow-y: scroll; max-height: 400px">
+                    <tr ng-repeat = "x in records" style="text-align: center; display: table ; width: 100%">
+                        <td style="width:20%"> {{x.id}} </td>
+                        <td style="width:20%"> {{x.title}} </td>
+                        <td style="width:20%"> {{x.description}} </td>
+                        <td style="width:20%"> {{x.datePendingStart}}</td>
+                        <td style="width:20%">{{x.rank}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</form>
+
+</body>

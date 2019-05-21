@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.min.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
+    <!--<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.min.css" type="text/css">
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/sb-admin-2.css">
+    <!-- endbuild -->
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+    <script src="bower_components/angularjs-datatables/dist/angular-datatables.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/angular-swx-session-storage/release/swx-session-storage.js"></script>
+    <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
+    <script src="bower_components/angular-acl/src/angular-acl.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.js"></script>
+
+
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/parameters.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/run.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/states.js -->
+    <script src="scripts/states/dashboard.state.js"></script>
+    <script src="scripts/states/ticket.state.js"></script>
+    <script src="scripts/states/user.state.js"></script>
+    <script src="scripts/states/team.state.js"></script>
+    <script src="scripts/states/software-product.state.js"></script>
+    <script src="scripts/states/permissions.state.js"></script>
+    <script src="scripts/states/group.state.js"></script>
+    <script src="scripts/states/acl.state.js"></script>
+    <script src="scripts/states/requests-logs.state.js"></script>
+    <script src="scripts/states/auditing.state.js"></script>
+    <script src="scripts/states/error.state.js"></script>
+    <script src="scripts/states/relation.state.js"></script>
+    <script src="scripts/states/escalation.state.js"></script>
+    <script src="scripts/states/gantt.state.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/directives.js -->
+    <script src='scripts/directives/header/header.js'></script>
+    <script src='scripts/directives/header/header-notification/header-notification.js'></script>
+    <script src='scripts/directives/sidebar/sidebar.js'></script>
+    <script src='scripts/directives/sidebar/sidebar-search/sidebar-search.js'></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/controllers.js -->
+    <script src='scripts/controllers/main.js'></script>
+    <script src='scripts/controllers/auth/loginController.js'></script>
+    <script src='scripts/controllers/auth/registrationController.js'></script>
+    <script src='scripts/controllers/product-software/productSoftwareCreateController.js'></script>
+    <script src='scripts/controllers/product-software/productSoftwareEditController.js'></script>
+    <script src='scripts/controllers/product-software/productSoftwareListController.js'></script>
+    <script src='scripts/controllers/team/TeamAssignController.js'></script>
+    <script src='scripts/controllers/team/TeamCreateController.js'></script>
+    <script src='scripts/controllers/team/TeamEditController.js'></script>
+    <script src='scripts/controllers/team/TeamListController.js'></script>
+    <script src='scripts/controllers/ticket/TicketCreateController.js'></script>
+    <script src='scripts/controllers/ticket/TicketListCustomerController.js'></script>
+    <script src='scripts/controllers/ticket/TicketListController.js'></script>
+    <script src='scripts/controllers/ticket/TicketListOfCurrentAssistantController.js'></script>
+    <script src='scripts/controllers/ticket/TicketEditController.js'></script>
+    <script src='scripts/controllers/permission/PermissionHandlerController.js'></script>
+    <script src='scripts/controllers/user/UserCreateController.js'></script>
+    <script src='scripts/controllers/user/UserInfoController.js'></script>
+    <script src='scripts/controllers/user/UserListController.js'></script>
+    <script src='scripts/controllers/user/UserPermissionController.js'></script>
+    <script src='scripts/controllers/permission/PermissionGroupController.js'></script>
+    <script src='scripts/controllers/group/GroupListController.js'></script>
+    <script src='scripts/controllers/group/GroupCreateController.js'></script>
+    <script src='scripts/controllers/group/GroupHandlerController.js'></script>
+    <script src='scripts/controllers/group/GroupHandlerController.js'></script>
+    <script src='scripts/controllers/group/GroupEditController.js'></script>
+    <script src='scripts/controllers/logs/AclRecordsController.js'></script>
+    <script src="scripts/controllers/logs/RequestsLogsController.js"></script>
+    <script src="scripts/controllers/logs/AuditingLogController.js"></script>
+    <script src="scripts/controllers/error/ErrorController.js"></script>
+    <script src="scripts/controllers/planning/ctrlGantt.js"></script>
+    <script src="scripts/controllers/planning/defineNewRelation.js"></script>
+    <script src="scripts/controllers/planning/dirGantt.js"></script>
+    <script src="scripts/controllers/planning/dirSelectRelation.js"></script>
+    <script src="scripts/controllers/planning/dirSelectTicket.js"></script>
+    <script src="scripts/controllers/planning/escalation.js"></script>
+    <script src="scripts/controllers/planning/planning.js"></script>
+    <script src="scripts/controllers/planning/relation.js"></script>
+    <script src="scripts/controllers/planning/showQueue.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/services.js -->
+    <script src='scripts/service/ToasterErrorHandler.js'></script>
+    <script src='scripts/service/AuthFactory.js'></script>
+    <script src='scripts/service/RegistrationFactory.js'></script>
+    <script src='scripts/service/PermissionDataFactory.js'></script>
+    <script src='scripts/service/SoftwareProductDataFactory.js'></script>
+    <script src='scripts/service/TeamDataFactory.js'></script>
+    <script src='scripts/service/TeamDataFactory.js'></script>
+    <script src='scripts/service/TicketDataFactory.js'></script>
+    <script src='scripts/service/UserDataFactory.js'></script>
+    <script src='scripts/service/GroupDataFactory.js'></script>
+    <script src="scripts/service/ACLRecordsDataFactory.js"></script>
+    <script src="scripts/service/RequestsLogsDataFactory.js"></script>
+    <script src="scripts/service/AuditingLogDataFactory.js"></script>
+    <script src="scripts/service/ErrorStateRedirector.js"></script>
+    <script src="scripts/service/AclRouteProtector.js"></script>
+    <script src='scripts/service/PlanningDataFactory.js'></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/filters.js -->
+    <script src='scripts/filters/filterPermission.js'></script>
+    <script src='scripts/filters/PrincipalFilter.js'></script>
+    <script src='scripts/filters/PermissionMaskFilter.js'></script>
+    <script src='scripts/filters/TicketCategoryFilter.js'></script>
+    <script src='scripts/filters/TicketVisibilityFilter.js'></script>
+    <script src='scripts/filters/TicketStateFilter.js'></script>
+    <script src='scripts/filters/TicketTeamPriorityFilter.js'></script>
+    <script src='scripts/filters/TicketCustomerPriorityFilter.js'></script>
+    <script src="scripts/controllers/planning/ctrlGantt.js"></script>
+    <!-- endbuild -->
+
+
+    <link href="gantt/codebase/dhtmlxgantt.css" rel="stylesheet" media="screen">
+    <script src="gantt/codebase/dhtmlxgantt.js"></script>
+
+    <script src="scripts/controllers/planning/dialog1.tmpl.js"></script>
+    <script src="scripts/controllers/planning/service.js"></script>
+
+    <script src="views/createStateMachine/createStateMachineCtrl.js"></script>
+
+
+    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+
+    <script src="scripts/controllers/dragdrop/dragdropController.js"></script>
+    <script src="scripts/controllers/dragdrop/angular-dragdrop.min.js"></script>
+
+    <script src="views/statemachine-dashboard/dashboardController.js"></script>
+    <script src="scripts/states/state-machine.state.js"></script>
+
+    <script src="scripts/service/rest.service.js"></script>
+
+    <script src="scripts/service/utils.service.js"></script>
+    <script src="scripts/service/http.service.js"></script>
+    <script src="scripts/directives/custom-changes.directive.js"></script>
+
+    <script src="scripts/service/storage.service.js"></script>
+    <script src="views/statemachine-dashboard/assignmentController.js"></script>
+
+    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/ng-tags-input/ng-tags-input.css">
+
+
+    <script src="scripts/service/StateMachineDataFactory.js"></script>
+
+
+    <script src="scripts/controllers/planning/modalTeam.js"></script>
+    <script src="scripts/controllers/planning/showGantt.js"></script>
+
+    <script src="scripts/controllers/planning/planningDialog.js"></script>
+
+    <script src="scripts/states/workflow.state.js"></script>
+
+
+    <script src="views/statemachine-dashboard/modal.js"></script>
+
+
+
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.min.js"></script>
+
+
+</head>
+
+<body>
+<div ng-app="TicketingSystemApp">
+    <toaster-container></toaster-container>
+    <div ui-view></div>
+</div>
+</body>
+
+</html>

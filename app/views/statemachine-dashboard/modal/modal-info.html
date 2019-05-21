@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h2><i class="fa fa-ticket-alt"></i> Ticket #{{formItem.id}} - Details</h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4><i class="fa fa-info-circle"></i>&nbsp;Info</h4>
+            <p><strong>ID: </strong>{{formItem.id}}</p>
+            <p><strong>Date: </strong>{{formItem.creationTimestamp}}</p>
+            <p><strong>Priority: </strong>{{formItem.customerPriority}}</p>
+        </div>
+        <div class="col-sm-6">
+            <h4><i class="fa fa-user-circle"></i><span>&nbsp;Author</span></h4>
+            <p><strong>Name: </strong>{{formItem.customer.firstName}}</p>
+            <p><strong>Surname: </strong>{{formItem.customer.lastName}}</p>
+            <p><strong>ID: </strong>{{formItem.customer.id}}</p>
+            <p><strong>Email: </strong>{{formItem.customer.email}}</p>
+            <p><strong>Username: </strong>{{formItem.customer.username}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-envelope"></i> &nbsp;Details</h4>
+            <p><strong>Title: </strong><u>{{formItem.title}}</u></p>
+            <p><strong>Description: </strong></p>
+            <p>{{formItem.description}}</p>
+            <p><strong>Target: </strong>&nbsp;<br>({{formItem.target['targetType']}})&nbsp;{{formItem.target['name']}}
+            </p>
+            <p><strong>Categories: </strong>&nbsp;&nbsp;{{formItem.presumedType}}</p>
+            <p><strong>Tags: </strong>&nbsp;&nbsp;{{formItem.tags}}</p>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Ok</button>
+    </div>
+</div>

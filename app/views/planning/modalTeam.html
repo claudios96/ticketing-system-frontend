@@ -1,0 +1,52 @@
+<md-dialog aria-label="Choose team">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools" style="background-color: #457AB2">
+                <h2>Choose team</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()" style="color: white">
+                    <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+                    <md-icon md-font-icon="fa-close" class="fa **fa-md**"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:800px;max-height:810px">
+            <md-tabs md-dynamic-height  md-border-bottom>
+            <md-tab label="my teams">
+                <md-content class="md-padding" style="padding-left: 250px">
+
+            <form  name="myForm" >
+               <!-- <label>Select a team:</label>
+                <select  style="color: white" class="btn btn-dark" ng-model ="team">
+                    <option  ng-repeat="p in myTeams">{{p.teamName}}</option>
+                </select>
+                <p style="color: darkred" ng-hide="result" ng-model="result">You haven't a team</p>-->
+                <md-input-container class="md-block" flex="50" >
+                    <label style="font-size: large; color: dimgray">Select a team:</label>
+                    <md-select name="team" ng-model="team"  >
+                        <md-option  ng-repeat="p in myTeams" ng-value="p.name">{{p.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </form>
+                </md-content>
+            </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <md-button >
+
+            </md-button>
+
+            <span flex></span>
+
+            <md-button ng-click="answer('not useful')" style="margin-right:20px;" >
+                Close
+            </md-button>
+            <md-button ng-click="showGantt(team)" style="margin-right:20px;" >
+                Show Gantt
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

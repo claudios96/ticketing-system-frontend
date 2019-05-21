@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3>Ticket #{{editTicket.id}} details</h3>
+</div>
+<form name="form.userForm"  novalidate>
+    <div class="modal-body">
+
+        <!-- STATE -->
+        <div class="form-group">
+            <label>State</label>
+            <input type="text" name="state" class="form-control"  ng-model="editTicket.currentTicketStatus" required readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Title</label>
+            <textarea type="text" name="title" class="form-control" ng-model="editTicket.title"required></textarea>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+            <label>Description</label>
+            <textarea type="text" name="description" class="form-control" ng-model="editTicket.description" required></textarea>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="form-group">
+            <label>Category</label>
+            <select name="cat"
+                    ng-options="t
+                                for
+                                t in editTicket.target.categories"
+                    ng-model="editTicket.presumedType"
+                    ng-init="editTicket.presumedType = editTicket.presumedType || editTicket.target.categories[0]">
+            </select>
+
+        </div>
+
+        <!-- TAGS -->
+        <div class="form-group">
+            <label>Tags</label>
+            <input type="text" name="tags" class="form-control" ng-model="editTicket.tags" readonly>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="submitForm()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

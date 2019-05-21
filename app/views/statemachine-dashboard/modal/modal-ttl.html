@@ -1,0 +1,18 @@
+<div class="modal-header">
+<h2><i class="fa fa-ticket-alt"></i> Ticket #{{formItem.id}} - TTL</h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4><i class="fa fa-info-circle"></i>&nbsp;Info Timeout</h4>
+            <p><strong>Starting : </strong>{{formItem.startDate}}</p>
+            <p><strong>TTL value: </strong>{{formItem.ttl}}</p>
+            <p><strong>TTL State: </strong>{{formItem.stateTTL}}</p>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Ok</button>
+    </div>
+</div>

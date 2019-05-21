@@ -1,0 +1,135 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Inserisci un nuovo Ticket</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Inserisci Ticket</div>
+                <div class="panel-body">
+                    <form name="formCreateTicket">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Ticket segnalato da</label>
+                                    <!--<select class="form-control"
+                                            ng-options="u.id as u.username for u in ctrl.users"
+                                            ng-model="ctrl.currentTicket.source">
+                                    </select>-->
+                                    <input class="form-control"
+                                           ng-disabled="true" ng-model="ctrl.userInfo.username" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group"
+                                     ng-class="{'has-error': formCreateTicket.title.$invalid && formCreateTicket.title.$touched}">
+                                    <label>Oggetto</label>
+                                    <input name="title" class="form-control" placeholder="Oggetto"
+                                           ng-model="ctrl.currentTicket.title" required>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': formCreateTicket.description.$invalid && formCreateTicket.description.$touched}">
+                                    <label>Descrizione</label>
+                                    <textarea name="description" class="form-control" rows="8"
+                                              ng-model="ctrl.currentTicket.description" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Categoria</label>
+
+                                    <select class="form-control"
+                                            ng-options="cat for cat in ctrl.TICKET_CATEGORIES"
+                                            ng-model="ctrl.currentTicket.category"
+                                            ng-required="true">
+                                    </select>
+<!--
+                                    <ui-select ng-model="ctrl.currentTicket.category" ng-required="true">
+                                        <ui-select-match allow-clear="false">
+                                            {{ctrl.currentTicket.category.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat='category in ctrl.TICKET_CATEGORIES'>
+                                            <span ng-bind="category.name"></span>
+                                        </ui-select-choices>
+                                    </ui-select>-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Prodotto Software</label>
+                                    <select class="form-control"
+                                            ng-options="sp.id as sp.name for sp in ctrl.softwareProducts"
+                                            ng-model="ctrl.currentTicket.target">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Priorità</label>
+                                    <select class="form-control"
+                                            ng-options="p for p in ctrl.TICKET_CUSTOMER_PRIORITIES"
+                                            ng-model="ctrl.currentTicket.customerPriority"
+                                            ng-required="true">
+                                    </select>
+<!--
+                                    <ui-select ng-model="ctrl.currentTicket.customerPriority" ng-required="true">
+                                        <ui-select-match allow-clear="false">
+                                            {{ctrl.currentTicket.customerPriority.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat='priority in ctrl.TICKET_CUSTOMER_PRIORITIES'>
+                                            <span ng-bind="priority.name"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Allegato </label> (formati consentiti:
+                                    jpg,jpeg,png,pdf,doc,docx,txt,xls,xlsx)
+                                    <input type="file" multiple="multiple"
+                                           accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xls,.xlsx,"
+                                           loadfile="ctrl.currentTicket.attachments">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary"
+                                            ng-disabled="(formCreateTicket.$invalid || formCreateTicket.$pending)"
+                                            ng-click="ctrl.insertTicket()">
+                                        Inserisci Ticket
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div ng-if="isDebug">{{ctrl.currentTicket}}</div>
+
+</div>

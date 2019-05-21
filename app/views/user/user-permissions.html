@@ -1,0 +1,147 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Credenziali Utente {{ctrl.singleUser.name + ctrl.singleUser.surname}}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input class="form-control" placeholder="Inserisci un username"
+                                           ng-disabled="ctrl.value" ng-model="ctrl.singleUser.username">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" placeholder="Inserisci una Password"
+                                           ng-disabled="ctrl.value" ng-model="ctrl.singleUser.password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input class="form-control" placeholder="Inserisci nome" ng-disabled="ctrl.value"
+                                           ng-model="ctrl.singleUser.name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Cognome</label>
+                                    <input class="form-control" placeholder="Inserisci cognome" ng-disabled="ctrl.value"
+                                           ng-model="ctrl.singleUser.surname">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>E-Mail</label>
+                                    <input class="form-control" placeholder="Inserisci un'email valida"
+                                           ng-disabled="ctrl.value" ng-model="ctrl.singleUser.email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Ruolo</label>
+                                    <input class="form-control" ng-disabled="ctrl.value"
+                                           ng-model="ctrl.singleUser.userType">
+                                    <!--
+                                    <select class="form-control"
+                                        ng-options="r.role as r.label for r in ctrl.roles"
+                                        ng-model="ctrl.currentUser.role">
+                                    </select>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <button class="btn btn-default" ng-click="ctrl.changeState()">{{ ctrl.value ?
+                                        "Abilita Modifica" : "Disabilita Modifica"}}
+                                    </button>
+                                    <button class="btn btn-default" ng-click="ctrl.updateUser()">Aggiorna Utente
+                                    </button>
+                                    <button class="btn btn-default" ng-click="ctrl.resetFields()">Reset</button>
+                                    <button class="btn btn-default" ng-click="ctrl.printValue()">Stampa Valori</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{ctrl.user}}
+                    </form>
+                </div>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Permessi sui Team</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="panel panel-default">
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table datatable="ng" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID-Team</th>
+                        <th>Sid</th>
+                        <th>Principal</th>
+                        <th>Read</th>
+                        <th>Write</th>
+                        <th>Create</th>
+                        <th>Delete</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody ng-repeat="p in ctrl.permission">
+                    <tr ng-repeat="acl in p.acls">
+                        <td>{{p.object_id_identity}}</td>
+                        <td>{{acl.sid}}</td>
+                        <td>{{acl.principal}}</td>
+                        <td ng-repeat="perm in acl.perms" style="text-align: center;">
+                            <i ng-class="{'fa fa-check': perm.grant ,'fa fa-times': !perm.grant}">
+                            </i></td>
+                        <td>
+                            <button class="btn btn-warning" ng-click="ctrl.showLog()">Visualizza</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="">Elimina</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+    <div class="row">
+        <button class="btn btn-default" ng-click="ctrl.refreshUsers()">Aggiorna Elenco Permessi</button>
+        <button class="btn btn-default" ui-sref="user.create">Aggiungi Permesso</button>
+    </div>
+
+</div>

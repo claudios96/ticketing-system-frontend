@@ -1,0 +1,19 @@
+
+
+    <select ng-show="relations[ticket.id] == 'equality'" class="btn btn-default"  ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+        <option   ng-repeat="t in ticketsforEqu"  ng-value="t.id">{{t.id}} - {{t.title}}</option>
+    </select>
+
+    <select ng-show="relations[ticket.id] == 'dependency'" class="btn btn-default"  ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+        <option   ng-repeat="y in ticketsforDep"  ng-value="y.id">{{y.id}} - {{y.title}}</option>
+    </select>
+
+    <select ng-show="relations[ticket.id] == 'regression'" style="color: black" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
+        <option   ng-repeat="t in ticketsforReg" ng-value="t.id">{{t.id}} - {{t.title}}</option>
+    </select>
+
+    <select ng-show="relations[ticket.id] != null && relations[ticket.id] != 'equality' && relations[ticket.id] != 'regression' && relations[ticket.id] !== 'dependency' " class="btn btn-default"   ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+        <option   ng-repeat="t in allTick" ng-value="t.id">{{t.id}} - {{t.title}}</option>
+    </select>
+
+

@@ -1,0 +1,93 @@
+<div class="modal-header">
+    Ticket #{{toChange.id}}
+</div>
+
+<!--
+    La distinzione sugli stati vinene fatta in questo modo in quanto l'unico vincolo
+    sulla creazione di nuove macchine a stati è che rispettino il nome degli stati.
+    Un ticket in uno stato X sarà gestito dal personale interno col ruolo Y.
+-->
+
+<div class="modal-body" ng-if="membersList.length > 0">
+    Select resolver team/user:<br>
+    <select id="resolvers"
+            name="resolvers"
+            class="btn btn-default"
+            ng-options="t as ( t['@type'] + ' ' + t.firstName + ' ' + t.lastName + ' ' + t.team.problemArea)
+                        for
+                        t in membersList track by t.id"
+            ng-model="membersList.selected">
+    </select>
+</div>
+
+<div class="modal-body" ng-if="currentState == 'VALIDATION' || currentState == 'DISPATCHING'|| currentState == 'REOPENED' ">
+    <!-- fare scegliere la internalType e internalPriority -->
+    Priority:<br>
+    <select id="priorities"
+            name="priorities"
+            class="btn btn-default"
+            ng-options="p as p.name
+                        for
+                        p in priorityList"
+            ng-model="priorityList.selected">
+    </select><br>
+
+</div>
+
+<div class="modal-body" ng-if="currentState == 'VALIDATION' || currentState == 'DISPATCHING'|| currentState == 'REOPENED'">
+    <!-- fare scegliere la internalType e internalPriority -->
+    Actual Category:<br>
+    <select id="categories"
+            name="categories"
+            class="btn btn-default"
+            ng-options="c as c
+                        for
+                        c in categoryList"
+            ng-model="categoryList.selected">
+    </select>
+</div>
+
+<div class="modal-body" ng-if="nextState == 'EXECUTION'">
+    <!-- si sceglie la difficulty -->
+    Difficulty:<br>
+    <select id="difficulty"
+            name="difficulty"
+            class="btn btn-default"
+            ng-options="d as d.name
+                        for
+                        d in difficultyList"
+            ng-model="difficultyList.selected">
+    </select>
+
+
+    <br>Choose Date:<br>
+    <md-datepicker style="z-index: 10000" ng-model="ctrl.date" md-current-view="year" md-placeholder="Enter date"></md-datepicker>
+    <br>
+
+    Duration:<br>
+    <div class="md-block"  >
+
+        <input name="duration" require ng-pattern="/^[0-9]{1,3}$/" ng-model="ctrl.duration" placeholder="integer number max 3 digits"  maxlength="3">
+
+        <span ng-show="planningForm.duration.$error.pattern"  >
+                                <div style="color: #9f3500; font-size: smaller">You must supply a valid duration</div>
+
+
+                            </span>
+
+    </div><br>
+</div>
+
+
+<div class=modal-body" style="padding-left: 20px;">
+    <div class="col-md">
+        Are you sure to change ticket #{{toChange.id}} state?<br><br>
+        <strong>Current state: </strong>{{toChange.currentTicketStatus}}<br>
+        <strong>Next state: </strong>{{nextState}}
+    </div>
+</div>
+
+<div class="modal-footer" ng-controller="dashboardController">
+    <button class="btn btn-warning" ng-click="cancelAssignment()">Return</button>
+    <button class="btn btn-primary" ng-click="continueAssignment()">OK</button>
+</div>

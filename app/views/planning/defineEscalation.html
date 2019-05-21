@@ -1,0 +1,61 @@
+<!--<ng-include src="'html/sidenav.html'"></ng-include>-->
+
+<div ng-controller="ctrlEscalation" layout="column" ng-cloak style="padding-left: 20%; padding-top: 1%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.95;width: 75% ; height: 15%">
+
+        <div style="text-align: center">
+        <h2 style="padding-left: 5%">Define escalation of ticket in queue</h2>
+        <p style="padding-left: 5%">rank = a * customer priority + b * team priority + c * waiting time</p>
+        </div>
+
+        <md-content  style="background-color: white; padding-top: 3%; padding-left: 35%">
+            <form name="escalationForm" style="color: #1d2124">
+
+
+                <div layout-gt-sm="row">
+                <md-input-container  >
+                        <label style="font-size: large">Coefficient a</label>
+                        <input  ng-required="true" style="width: 300px"  placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$"  name="a" ng-model="customerPriority">
+                        <div ng-messages="escalationForm.a.$error">
+                            <div ng-message="pattern">'a' must be a positive number</div>
+                        </div>
+                </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                <md-input-container >
+                        <label style="font-size: large">Coefficient b</label>
+                        <input style="width: 300px"  ng-required="true" placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$" name="b" ng-model=" teamPriority" >
+                        <div ng-messages="escalationForm.b.$error">
+                            <div ng-message="pattern">'b' must be a positive number</div>
+                        </div>
+                </md-input-container>
+                </div>
+
+
+                <div layout-gt-sm="row">
+                <md-input-container >
+                    <label style="font-size: large ">Coefficient c</label>
+                    <input style="width: 300px"  placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$" ng-required="true" name="c" ng-model=" time">
+                    <div ng-messages="escalationForm.c.$error">
+                        <div ng-message="pattern">'c' has to be a positive number</div>
+                    </div>
+                </md-input-container>
+                </div>
+
+
+                <div style="padding-left: 12%;padding-top: 30px">
+                    <button style="width: 150px" ng-disabled="escalationForm.$invalid" ng-click="defineEscalation()" type="button" class="btn btn-dark" style="text-align: center">Submit</button>
+                </div>
+
+
+            </form>
+        </md-content>
+    </div>
+</div>
+
+
+
+
+
+

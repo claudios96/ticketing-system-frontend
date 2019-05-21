@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    Error has occurred</h2>
+                <div class="alert alert-danger">
+                    <ul>
+                        <li ng-repeat="(key,value) in ctrl.errorObject">
+                            <strong>{{key}}</strong>: {{value}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary" ui-sref="dashboard.home">Torna a home</button>
+        </div>
+    </div>
+</div>
+</div>

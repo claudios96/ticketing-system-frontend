@@ -1,0 +1,88 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Elenco Ticket dell'utente:
+                <div class="entityname">{{ctrl.userInfo.username}}</div>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Tickets</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table datatable="ng" class="table table-striped table-bordered" id="ticketsListDatatable"
+                               dt-options="dtOptions" dt-column-defs="dtColumnDefs">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1">ID</th>
+                                <th class="col-md-1">Data Creazione</th>
+                                <th class="col-md-1">Oggetto</th>
+                                <th class="col-md-1">Categoria</th>
+                                <th class="col-md-1">Prodotto Software</th>
+                                <th class="col-md-1">Versione prodotto</th>
+                                <th class="col-md-1">Priorità customer</th>
+                                <th class="col-md-1">Priorità team</th>
+                                <th class="col-md-1">Stato</th>
+                                <th class="col-md-1">Visibilità</th>
+                                <th class="col-md-2"></th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="t in ctrl.tickets">
+                                <td>{{t.id}}</td>
+                                <td>{{t.creationTimestamp | date}}</td>
+                                <td>{{t.title}}</td>
+                                <td>{{t.category | TicketCategoryFilter}}</td>
+                                <td>{{t.target.name}}</td>
+                                <td>{{t.target.version}}</td>
+                                <td>{{t.customerPriority | TicketCustomerPriorityFilter}}</td>
+                                <td>{{t.teamPriority | TicketTeamPriorityFilter}}</td>
+                                <td>{{t.currentTicketStatus | TicketStateFilter}}</td>
+                                <td>{{t.visibility | TicketVisibilityFilter}}</td>
+                                <td>
+                                    <button class="btn btn-xl btn-primary"
+                                            ng-disabled="!t.attachments || t.attachments.isEmpty()"
+                                            class="btn-block" title="Download allegati"
+                                            ng-click="ctrl.downloadAttachedFiles(t.id)">
+                                        <i class="glyphicon glyphicon-floppy-save"></i>
+                                    </button>
+                                    <!--<button class="btn btn-xl btn-success" title="Dettaglio ticket"
+                                            ng-click="ctrl.stateEditTicket(t.id)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+
+                                    <button class="btn btn-xl btn-danger" title="Revoca ticket"
+                                            ng-click="ctrl.unassignTicketFromAssistant(t.id,ctrl.userInfo.userId)">
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                    -->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary" ng-click="ctrl.refreshTickets(ctrl.userInfo.userId)">Aggiorna Lista Ticket</button>
+            <button class="btn btn-success" ui-sref="ticket.create">Aggiungi Ticket</button>
+        </div>
+
+    </div>
+
+    <div ng-if="isDebug">{{ctrl.tickets}}</div>
+    <div ng-if="isDebug">{{ctrl.userInfo.userId}}</div>
+
+
+</div>

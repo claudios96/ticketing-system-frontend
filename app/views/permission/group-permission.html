@@ -1,0 +1,57 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Elenco dei permessi sul Gruppo:
+                <div class="entityname">ID: {{ctrl.currentObject.id}} - {{ctrl.currentObject.name}}</div>
+            </h1>
+            <br>
+            <div ng-if="isDebug">{{ctrl.currentPermissions}}</div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Elenco Team</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table datatable="ng" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="col-md-2">ID Team</th>
+                                <th class="col-md-2">SID</th>
+                                <th class="col-md-1">Principal</th>
+                                <th class="col-md-1">Read</th>
+                                <th class="col-md-1">Write</th>
+                                <th class="col-md-1">Create</th>
+                                <th class="col-md-1">Delete</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="p in ctrl.currentPermissions">
+                                <td>{{p.domain_object_id}}</td>
+                                <td>{{p.sid.sidName}}</td>
+                                <td>{{p.sid.principal | PrincipalFilter}}</td>
+                                <td ng-repeat="perm in p.perms" class="text-center">
+                                    <i ng-class="{'fa fa-check': perm.grant ,'fa fa-times': !perm.grant}">
+                                    </i></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-success" ui-sref="permissions.create({tipo: 'team', state: 'create'})">Aggiungi
+                Permesso
+            </button>
+            <button class="btn btn-primary" ng-click="ctrl.init()">Aggiorna Elenco Permessi</button>
+        </div>
+    </div>
+</div>

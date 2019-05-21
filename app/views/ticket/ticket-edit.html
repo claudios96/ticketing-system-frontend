@@ -1,0 +1,141 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Ticket gestito da
+                <div class="entityname">{{ctrl.userInfo.username}}</div>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Gestione Ticket</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Data creazione</label>
+                                <input name="date" class="form-control" placeholder="Data creazione"
+                                       ng-disabled="true" ng-model="ctrl.ticket.creationDateTime" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Segnalato da</label>
+                                <input name="source" class="form-control" placeholder="Segnalato da"
+                                       ng-disabled="true" ng-model="ctrl.ticket.customer.name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Priorità customer</label>
+                                <input name="customerPriority" class="form-control"
+                                       placeholder="Priorità customer"
+                                       ng-disabled="true"
+                                       ng-model="ctrl.ticket.customerPriority | TicketCustomerPriorityFilter">
+                            </div>
+                        </div>
+                    </div>
+                    <form name="formEditTicket">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group"
+                                     ng-class="{'has-error': formEditTicket.title.$invalid && formEditTicket.title.$touched}">
+                                    <label>Oggetto</label>
+                                    <input name="title" class="form-control" placeholder="Oggetto"
+                                           ng-model="ctrl.ticket.title" required>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': formEditTicket.description.$invalid && formEditTicket.description.$touched}">
+                                    <label>Descrizione</label>
+                                    <textarea name="description" class="form-control" rows="8"
+                                              ng-model="ctrl.ticket.description" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select class="form-control"
+                                        ng-options="cat.id as cat.name for cat in ctrl.TICKET_CATEGORIES"
+                                        ng-model="ctrl.ticket.category">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Prodotto Software</label>
+                                <select class="form-control"
+                                        ng-options="sp.id as sp.name for sp in ctrl.softwareProducts"
+                                        ng-model="ctrl.ticket.target.id">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Priorità team</label>
+                                <select class="form-control"
+                                        ng-options="p.id as p.name for p in ctrl.TICKET_TEAM_PRIORITIES"
+                                        ng-model="ctrl.ticket.teamPriority">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Stato ticket</label>
+                                <select class="form-control"
+                                        ng-options="s.id as s.name for s in ctrl.TICKET_STATUS"
+                                        ng-model="ctrl.ticket.state">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Visibilità</label>
+                                <select class="form-control"
+                                        ng-options="v.id as v.name for v in ctrl.TICKET_VISIBILITIES"
+                                        ng-model="ctrl.ticket.visibility">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Download allegati</label>
+                                <button ng-disabled="!ctrl.ticket.attachments || ctrl.ticket.attachments.isEmpty()"
+                                        class="btn btn-block btn-primary" title="Download allegati"
+                                        ng-click="ctrl.downloadAttachedFiles(ctrl.ticket.id)">
+                                    <i class="fa fa-cloud-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <button class="btn btn-warning"
+                                        ng-disabled="(formEditTicket.$invalid || formEditTicket.$pending)"
+                                        ng-click="ctrl.updateTicket()">Aggiorna Ticket
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- /.panel -->
+
+        <div ng-if="isDebug">{{ctrl.ticket}}</div>
+
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+</div>

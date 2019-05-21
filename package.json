@@ -1,0 +1,61 @@
+{
+  "name": "ticketing-system-app",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonezacca/ISSSR1718-FRONTEND"
+  },
+  "dependencies": {
+    "angular-aria": "^1.7.4",
+    "angular-datatables": "^0.6.2",
+    "angular-material": "^1.1.10",
+    "angular-messages": "^1.7.4",
+    "angular-ui-notification": "^0.3.6",
+    "ng-tags-input": "^3.2.0"
+  },
+  "devDependencies": {
+    "generator-angular": "^0.16.0",
+    "gifsicle": "^3.0.4",
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^0.7.3",
+    "grunt-concurrent": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-htmlmin": "^0.3.0",
+    "grunt-contrib-imagemin": "^0.7.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-filerev": "^0.2.1",
+    "grunt-google-cdn": "^0.4.0",
+    "grunt-karma": "^0.12.2",
+    "grunt-newer": "^0.7.0",
+    "grunt-ng-annotate": "^0.10.0",
+    "grunt-svgmin": "^0.4.0",
+    "grunt-usemin": "^2.1.1",
+    "imagemin-gifsicle": "^5.2.0",
+    "jasmine-core": "^2.1.3",
+    "jpegtran-bin": "^3.2.0",
+    "jshint-stylish": "^0.2.0",
+    "json-server": "^0.14.0",
+    "karma": "^1.6.0",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "load-grunt-tasks": "^0.4.0",
+    "optipng-bin": "^4.0.0",
+    "pngquant-bin": "^4.0.0",
+    "time-grunt": "^0.3.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "start": "grunt serve",
+    "dist": "grunt serve:dist",
+    "postinstall": "bower install"
+  }
+}

@@ -1,0 +1,31 @@
+<div class="account col-sm-10">
+    <br>
+    <form>
+        <h2 class="text-center">Create a new State Machine</h2>
+        <div class="form-group" >
+            <div class="form-group">
+                <button class="btn btn-primary btn-lg btn-block" ng-click="downloadTemplate()">Download XML Template</button>
+            </div>
+            <div class="form-group">
+                <label>Name: </label><br>
+                <input type="text" style="font-weight: bold;" class="form-control" name="title"
+                       ng-model="stateMachine.name">
+            </div>
+            <div class="form-group">
+                <label>Diagram : </label><br>
+                <input type="file"
+                       custom-on-change="selectedDiagram"
+                       accept="image/*"/>
+            </div>
+            <div class="form-group">
+                <label>State Machine XML: </label><br>
+                <input type="file"
+                       custom-on-change="selectedFile"
+                       accept="application/xml"/>
+            </div>
+            <div class="form-group">
+                <button  class="btn btn-primary btn-lg btn-block" ng-click="createStateMachine(stateMachine)">Upload</button>
+            </div>
+        </div>
+    </form>
+</div>
