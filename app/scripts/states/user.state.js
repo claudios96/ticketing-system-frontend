@@ -56,4 +56,15 @@ mainAngularModule.config(['$stateProvider',
                     }
                 }
             })
+            .state('user.guide', {
+                url: '/guide',
+                templateUrl: 'views/user/user-guide.html',
+                controller: 'UserGuideController',
+                controllerAs: 'ctrl',
+                resolve: {
+                    acl: function (AclRouteProtector) {
+                        return AclRouteProtector.checkRoutePermission('user_permission');
+                    }
+                }
+            })
     }]);
