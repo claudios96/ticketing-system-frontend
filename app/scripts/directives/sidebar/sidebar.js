@@ -51,8 +51,8 @@ mainAngularModule
                                             "state": "user.info({userId:" + $scope.userInfo.userId + "})"
                                         },
                                         {
-                                            "nome": "Guida Utente",
-                                            "state": "user.guide",
+                                            "nome": "Guida Admin",
+                                            "state": "admin.guide",
                                         }
                                     ]
                                 },
@@ -185,6 +185,10 @@ mainAngularModule
                                         {
                                             "nome": "Informazioni Utente",
                                             "state": "user.info({userId:" + $scope.userInfo.userId + "})"
+                                        },
+                                        {
+                                            "nome": "Guida Utente",
+                                            "state": "user.guide",
                                         }
                                     ]
                                 },
@@ -257,6 +261,10 @@ mainAngularModule
                                         {
                                             "nome": "Informazioni Utente",
                                             "state": "user.info({userId:" + $scope.userInfo.userId + "})"
+                                        },
+                                        {
+                                            "nome": "Guida Utente",
+                                            "state": "user.guide",
                                         }
                                     ]
                                 },
@@ -286,6 +294,10 @@ mainAngularModule
                                         {
                                             "nome": "Informazioni Utente",
                                             "state": "user.info({userId:" + $scope.userInfo.userId + "})"
+                                        },
+                                        {
+                                            "nome": "Guida Utente",
+                                            "state": "user.guide",
                                         }
                                     ]
                                 },
@@ -363,6 +375,10 @@ mainAngularModule
                                         {
                                             "nome": "Informazioni Utente",
                                             "state": "user.info({userId:" + $scope.userInfo.userId + "})"
+                                        },
+                                        {
+                                            "nome": "Guida Utente",
+                                            "state": "user.guide",
                                         }
                                     ]
                                 },
