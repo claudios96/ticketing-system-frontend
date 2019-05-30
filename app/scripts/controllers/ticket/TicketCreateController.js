@@ -26,7 +26,7 @@ mainAngularModule
                         ctrl.TICKET_STATUS = response.data.statuses;
                         ctrl.softwareProducts = response.data.activeTargets;
                     }, function () {
-                        alert("Invalid metadata");
+                        alert("Invalid metadat ba");
                     });
                 }
 
