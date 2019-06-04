@@ -51,15 +51,15 @@
                                     <button class="btn btn-warning" ng-disabled="!hasPermission('software_update')"
                                             ui-sref="productsoftware.edit({spId: p.id})"
                                             title="Modifica"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger" ng-disabled="!hasPermission('software_delete')"
+                                    <buttofn class="btn btn-danger" ng-disabled="!hasPermission('software_delete')"
                                             ng-click="ctrl.deleteProduct(p.id)" title="Elimina">
-                                        <i class="fa fa-trash"></i></button>
+                                        <i class="fa fa-trash"></i></buttof{{}}n>
                                 </td>
 
                                 <td ng-controller="ChatCtrl as chatctrl" ng-show="chatctrl.userInfo.userRole == 'ADMIN'">
 
                                     <button title = "Avvia chat prodotto"
-                                            ng-click="chatctrl.avviaChatProdotto(p.id)"
+                                            ui-sref="chat.visualizza({chatId: p.id, chatType: 'prodotto'})"
                                             class="btn btn-primary">
                                         <i class="fa fa-wechat fa-spin"></i>
                                     </button>

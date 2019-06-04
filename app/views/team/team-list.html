@@ -45,7 +45,7 @@
                                 <td>
                                     <button title = "Avvia chat con Team"
                                             ng-controller="ChatCtrl as chatctrl"
-                                            ng-click="chatctrl.avviaChatTeam(t.id)"
+                                            ui-sref="chat.visualizza({chatId: t.id, chatType: 'team'})"
                                             class="btn btn-primary">
                                         <i class="fa fa-wechat fa-spin"></i>
                                     </button>

@@ -89,14 +89,16 @@
                                     <!-- TODO potremmo inserire il nome del team member e del team leader nei titoli -->
                                     <button ng-if="chatctrl.userInfo.userRole == 'TEAM_LEADER'"
                                             title = "Avvia chat con Team Member"
-                                            ng-click="chatctrl.avviaChatLeaderMember(t.id)"
+                                            ui-sref="chat.visualizza({chatId: t.id, chatType: 'leader-member'})"
                                             class="btn btn-primary">
                                         <i class="fa fa-wechat fa-spin"></i>
                                     </button>
 
+
+
                                     <button ng-if="chatctrl.userInfo.userRole == 'TEAM_MEMBER'"
                                             title = "Avvia chat con Team Leader"
-                                            ng-click="chatctrl.avviaChatLeaderMember(t.id)"
+                                            ui-sref="chat.visualizza({chatId: t.id, chatType: 'leader-member'})"
                                             class="btn btn-primary">
                                         <i class="fa fa-wechat fa-spin"></i>
                                     </button>

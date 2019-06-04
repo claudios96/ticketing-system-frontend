@@ -8,9 +8,9 @@
  */
 
 mainAngularModule
-    .controller('ChatCtrl', ['$scope','$state', 'AuthFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
+    .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
         'DTColumnDefBuilder', 'AclService', 'httpService',
-        function ($scope, $state, AuthFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
+        function ($scope, $state, $stateParams, AuthFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
 
             const ctrl = this;
 
@@ -23,28 +23,25 @@ mainAngularModule
                         ];
             */
 
+            // TODO : manca il get dal be
+
 
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
-                console.log('--->',ctrl.userInfo.userRole);
+                //console.log('--->',ctrl.userInfo.userRole);
+                ctrl.id = $stateParams.chatId;
+                ctrl.type = $stateParams.chatType;
+
+                ctrl.messages = [];
+                // creazione dummy messages
+                for (var i=0;i<10;i++) {
+                    ctrl.messages.push({sender:'Luigi', time:'15:23', data:'ciao mondo'});
+
+                }
             }
 
             init();
 
-            function avviaChatProdottoFn(id) {
-                $state.go('chat');
-            }
 
-            function avviaChatLeaderMemberFn(id) {
-                $state.go('chat');
-            }
-
-            function avviaChatTeamFn(id) {
-                $state.go('chat');
-            }
-
-            ctrl.avviaChatProdotto = avviaChatProdottoFn;
-            ctrl.avviaChatLeaderMember = avviaChatLeaderMemberFn;
-            ctrl.avviaChatTeam = avviaChatTeamFn;
 
         }]);
