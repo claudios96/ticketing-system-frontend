@@ -24,6 +24,7 @@
                                 <th class="col-md-1">State Machine</th>
                                 <th class="col-md-1">Active/Retire</th>
                                 <th class="col-md-2"></th>
+                                <th class="col-md-0.5" ng-controller="ChatCtrl as chatctrl"  ng-show="chatctrl.userInfo.userRole == 'ADMIN'">Chat</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,6 +55,17 @@
                                             ng-click="ctrl.deleteProduct(p.id)" title="Elimina">
                                         <i class="fa fa-trash"></i></button>
                                 </td>
+
+                                <td ng-controller="ChatCtrl as chatctrl" ng-show="chatctrl.userInfo.userRole == 'ADMIN'">
+
+                                    <button title = "Avvia chat prodotto"
+                                            ng-click="chatctrl.avviaChatProdotto(p.id)"
+                                            class="btn btn-primary">
+                                        <i class="fa fa-wechat fa-spin"></i>
+                                    </button>
+
+                                </td>
+
                             </tr>
                             </tbody>
                         </table>

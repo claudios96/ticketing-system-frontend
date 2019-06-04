@@ -18,6 +18,7 @@
                                 <th class="col-md-2">ID</th>
                                 <th class="col-md-7">Nome del Team</th>
                                 <th class="col-md-3">&nbsp;</th>
+                                <th class="col-md-1">Chat</th>
 
                             </tr>
                             </thead>
@@ -40,6 +41,16 @@
                                             class="fa fa-trash"></i>
                                     </button>
                                 </td>
+
+                                <td>
+                                    <button title = "Avvia chat con Team"
+                                            ng-controller="ChatCtrl as chatctrl"
+                                            ng-click="chatctrl.avviaChatTeam(t.id)"
+                                            class="btn btn-primary">
+                                        <i class="fa fa-wechat fa-spin"></i>
+                                    </button>
+                                </td>
+
                             </tr>
                             </tbody>
                         </table>
