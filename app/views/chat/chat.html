@@ -22,11 +22,13 @@ PAGINA DI PROVA {{ctrl.id}} - {{ctrl.type}}
             <h1 ng-show="ctrl.type == 'team'" class="page-header">Chat team {{ctrl.id}}</h1>
         </div>
         <!-- /.col-lg-12 -->
+
     </div>
+<!--
     <div class="col-lg-12" align="center">
         <table ng-repeat="m in ctrl.messages" width="100%">
 
-            <!-- TODO : a sx cosa scrivo io e a dx tutti gli altri -->
+            <-- TODO : a sx cosa scrivo io e a dx tutti gli altri --
             <tr bgcolor="#ffebcd">
 
                 <td>{{m.sender}} alle {{m.time}} ha scritto</td>
@@ -43,12 +45,36 @@ PAGINA DI PROVA {{ctrl.id}} - {{ctrl.type}}
         </table>
 
     </div>
+-->
+
+    <ul>
+        <table ng-repeat="message in ctrl.messages">
+            <tr>
+                <td valign="top" class="avatar" width="5%"> <img class="img-circle" style="width:100%;" src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" /></td>
+                <td>
+                    <table width="100%">
+                        <tr><td>{{message.sender}} (user Type)</td></tr>
+                        <tr><td>{{ message.date | date:"MM/dd/yyyy 'ore' h:mma" }} </td></tr>
+                        <tr><td bgcolor="#C2FBFE">{{ message.content }}</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </ul>
 
 
+<!--
     <div class="col-lg-12" align="center">
         <input type="text" style="width:90%; height:100px">
         <button class="btn btn-primary" ng-click="ctrl.inviaRisposta()">Invia</button>
 
+    </div>
+-->
+    <div class="col-lg-12" align="center" ng-controller="ChatCtrl">
+        <form>
+            <input ng-model="ctrl.messageContent" type="text" style="width:90%; height:50px" placeholder="Scrivi un messaggio..." />
+            <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()">Invia</button>
+        </form>
     </div>
 </div>
 

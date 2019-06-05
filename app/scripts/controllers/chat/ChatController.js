@@ -12,7 +12,7 @@ mainAngularModule
         'DTColumnDefBuilder', 'AclService', 'httpService',
         function ($scope, $state, $stateParams, AuthFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
 
-            const ctrl = this;
+            var ctrl = this;
 
 
 
@@ -34,14 +34,27 @@ mainAngularModule
 
                 ctrl.messages = [];
                 // creazione dummy messages
-                for (var i=0;i<10;i++) {
-                    ctrl.messages.push({sender:'Luigi', time:'15:23', data:'ciao mondo'});
+                /*for (var i=0;i<5;i++) {
+                    ctrl.messages.push({sender:'Giovanni', date: new Date(), content:'Ciao mondo'});
 
-                }
+                }*/
             }
 
             init();
 
+            function  sendMessageFn() {
+                // Don't send an empty message
+                if (!ctrl.messageContent || ctrl.messageContent === '') {
+                    return;
+                }
 
+                ctrl.messages.push({sender:'Giovanni', date: new Date(), content: ctrl.messageContent});
+
+                // Reset the messageContent input
+                ctrl.messageContent = '';
+
+            }
+
+            ctrl.sendMessage = sendMessageFn;
 
         }]);
