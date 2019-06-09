@@ -53,9 +53,9 @@ PAGINA DI PROVA {{ctrl.id}} - {{ctrl.type}}
                 <td valign="top" class="avatar" width="5%"> <img class="img-circle" style="width:100%;" src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" /></td>
                 <td>
                     <table width="100%">
-                        <tr><td>{{message.sender}} (user Type)</td></tr>
-                        <tr><td>{{ message.date | date:"MM/dd/yyyy 'ore' h:mma" }} </td></tr>
-                        <tr><td bgcolor="#C2FBFE">{{ message.content }}</td></tr>
+                        <tr><td>{{message.completeName}} {{ctrl.userInfo.userRole}} </td></tr>
+                        <tr><td>{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td></tr>
+                        <tr><td bgcolor="#C2FBFE">{{ message.text }}</td></tr>
                     </table>
                 </td>
             </tr>

@@ -24,16 +24,13 @@ mainAngularModule
             function GetMsgsFn(username, type, id, successCB, errorCB) {
 
                 console.log("ChatDataFactory", "getMsgsFn()")
-                console.log("ChatDataFactory", username)
-                console.log("ChatDataFactory", type)
-                console.log("ChatDataFactory", id)
 
                 $http({
                     method: 'GET',
-                    url: _endPointJSON,
-                    params: {'username' : username,
-                            'type' : type,
-                            'subject_id' : id}
+                    url: _endPointJSON + "msgs",
+                    params: {'type' : type,
+                            'subject_id' : id,
+                            'username' : username}
                 })
                     .then(function (response) {
                             console.log(response);
@@ -54,16 +51,13 @@ mainAngularModule
             function InsertFn(userId, text, chatId, successCB, errorCB) {
 
                 console.log("ChatDataFactory", "insertFn()")
-                console.log("ChatDataFactory", userId)
-                console.log("ChatDataFactory", text)
-                console.log("ChatDataFactory", chatId)
 
                 $http({
-                    method: 'POST',
-                    url: _endPointJSON,
-                    data: {'user_id' : userId,
-                            'text' : text,
-                            'chat_id' : chatId}
+                    method: 'PUT',
+                    url: _endPointJSON + "putmsg",
+                    params: {'chat_id' : chatId,
+                            'user_id' : userId,
+                            'text' : text}
                 })
                     .then(function (response) {
                             if (successCB) {

@@ -14,7 +14,7 @@ mainAngularModule
 
             var ctrl = this;
             var chatData;
-
+            ctrl.messages = [];
 
             /*
                         $scope.dtOptions = DTOptionsBuilder.newOptions().withDOM('C<"clear">lfrtip');
@@ -28,23 +28,24 @@ mainAngularModule
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
                 //console.log('--->',ctrl.userInfo.userRole);
-                ctrl.id = $stateParams.chatId;
+                ctrl.subjsct_id = $stateParams.chatId;
                 ctrl.type = $stateParams.chatType;
 
+                //ctrl.id = 8
+
                 console.log("ChatController", "init()")
-                console.log("ChatController", Number(ctrl.id))
-                console.log("ChatController", String(ctrl.type))
-                console.log("ChatController", ctrl.userInfo.username)
-
-                chatData = {'username' : ctrl.userInfo.username,
-                    'type' : String(ctrl.type),
-                    'subject_id' : Number(ctrl.id)};
 
 
-                //ctrl.messages = [];
+                if (ctrl.subjsct_id != null) {
 
-                //refreshChatFn(chatData);
+                    chatData = {
+                        'username': ctrl.userInfo.username,
+                        'type': ctrl.type,
+                        'subject_id': ctrl.subjsct_id
+                    };
 
+                    refreshChatFn(chatData);
+                }
                 // creazione dummy messages
                 /*for (var i=0;i<5;i++) {
                     ctrl.messages.push({sender:'Giovanni', date: new Date(), content:'Ciao mondo'});
@@ -62,13 +63,10 @@ mainAngularModule
 
                         //TODO gestire info
 
-                        console.log("username", msgs.messages.username)
-                        console.log("nomeCognome", msgs.messages.completeName)
-                        console.log("testo", msgs.messages.text)
-                        console.log("timestamp", msgs.messages.timestamp)
+                        ctrl.messages = msgs.messages;
+                        ctrl.id = msgs.id;
+                        console.log("chat_id", msgs.id)
 
-
-                        console.log("ChatController", ctrl.messages)
                     }, function (error) {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
                     });
@@ -82,9 +80,9 @@ mainAngularModule
                 }
 
                 console.log("ChatController", "send()")
-                console.log("ChatController", Number(ctrl.userInfo.userId))
-                console.log("ChatController", String(ctrl.messageContent))
-                console.log("ChatController", Number(ctrl.id))
+                console.log("user_id", ctrl.userInfo.userId)
+                console.log("text", ctrl.messageContent)
+                console.log("chat_id", ctrl.id)
 
                 //ctrl.messages.push({sender:'Giovanni', date: new Date(), content: ctrl.messageContent});
                 /*var msgData = {'user_id' : Number(ctrl.userInfo.userId),
