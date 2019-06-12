@@ -65,7 +65,6 @@ mainAngularModule
                                 successCB(response.data);
                                 ToasterNotifierHandler.handleCreation(response);
                             }
-                            //return response.data;
                         },
                         function (response) {
                             if (errorCB) {
