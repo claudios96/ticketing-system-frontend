@@ -376,3 +376,43 @@ table.dataTable thead .sorting:after {
 #md-date-pane-0 {
     z-index: 10000
 }
+
+
+/*
+CHAT CSS
+*/
+
+/*
+FOOTER
+*/
+
+.my-footer {
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    clear: both;
+    position: fixed;
+    background-color: #f8f8f8;
+    padding-top: 9px;
+    padding-left: 100px;
+}
+
+.btn {
+    position: relative;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    transition-duration: 0.4s;
+    margin: auto;
+}
+
+.btn:hover {background: dodgerblue;}
+
+.info {
+    border: 2px solid dodgerblue;
+    background-color: #555555;
+    color: dodgerblue;
+}

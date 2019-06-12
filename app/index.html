@@ -87,6 +87,7 @@
     <script src='scripts/directives/header/header-notification/header-notification.js'></script>
     <script src='scripts/directives/sidebar/sidebar.js'></script>
     <script src='scripts/directives/sidebar/sidebar-search/sidebar-search.js'></script>
+    <script src='scripts/directives/footer/footer.js'></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/controllers.js -->
@@ -216,11 +217,14 @@
     <script src="bower_components/angular-moment/angular-moment.min.js"></script>
 
 
+
 </head>
 
 <body>
 <div ng-app="TicketingSystemApp">
-    <toaster-container></toaster-container>
+    <toaster-container>
+
+    </toaster-container>
     <div ui-view></div>
 </div>
 </body>
