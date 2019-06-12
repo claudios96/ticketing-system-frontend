@@ -16,22 +16,12 @@ mainAngularModule
             var chatData;
             ctrl.messages = [];
 
-            /*
-                        $scope.dtOptions = DTOptionsBuilder.newOptions().withDOM('C<"clear">lfrtip');
-                        $scope.dtColumnDefs = [
-                            DTColumnDefBuilder.newColumnDef(4).notSortable()
-                        ];
-            */
-
-
 
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
-                //console.log('--->',ctrl.userInfo.userRole);
                 ctrl.subjsct_id = $stateParams.chatId;
                 ctrl.type = $stateParams.chatType;
 
-                //ctrl.id = 8
 
                 console.log("ChatController", "init()")
 
@@ -46,26 +36,17 @@ mainAngularModule
 
                     refreshChatFn(chatData);
                 }
-                // creazione dummy messages
-                /*for (var i=0;i<5;i++) {
-                    ctrl.messages.push({sender:'Giovanni', date: new Date(), content:'Ciao mondo'});
 
-                }*/
             }
 
             function refreshChatFn(chatData) {
                 console.log('refresh chat');
 
                 ChatDataFactory.GetMsgs(chatData.username, chatData.type, chatData.subject_id,
-                    function (msgs) {
+                    function (response) {
 
-                        //ctrl.messages = msgs;
-
-                        //TODO gestire info
-
-                        ctrl.messages = msgs.messages;
-                        ctrl.id = msgs.id;
-                        console.log("chat_id", msgs.id)
+                        ctrl.messages = response.messages;
+                        ctrl.id = response.id;
 
                     }, function (error) {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
@@ -84,15 +65,12 @@ mainAngularModule
                 console.log("text", ctrl.messageContent)
                 console.log("chat_id", ctrl.id)
 
-                //ctrl.messages.push({sender:'Giovanni', date: new Date(), content: ctrl.messageContent});
-                /*var msgData = {'user_id' : Number(ctrl.userInfo.userId),
-                                'text' : String(ctrl.messageContent),
-                                'chat_id' : Number(ctrl.id)};
-                */
 
                 ChatDataFactory.InsertMsg(Number(ctrl.userInfo.userId), String(ctrl.messageContent), Number(ctrl.id),
                     function (response) {
                         console.log(response);
+                        ctrl.messages.push(response);
+
                     }, function (response) {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura del messaggio"})
                     });
