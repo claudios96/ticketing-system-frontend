@@ -5,10 +5,10 @@
         color: white;
         font-size: 14px;
         margin: 0;
-        align-content: right;
         padding: 5px 10px 5px 12px;
         word-break: break-word;
         word-break: break-all;
+        max-width: 450px;
     }
 
     .messaggio_in {
@@ -17,11 +17,13 @@
         color: white;
         font-size: 14px;
         margin: 0;
-        align-content: left;
         padding: 5px 10px 5px 12px;
         word-break: break-word;
         word-break: break-all;
+        max-width: 450px;
+        column-a
     }
+
 
 </style>
 
@@ -43,12 +45,11 @@
         <table ng-repeat="message in ctrl.messages">
             <tr>
 
-                <td ng-if="message.username == ctrl.userInfo.username" width="150px">
 
-                </td>
 
-                <td ng-if="message.username == ctrl.userInfo.username">
-                <td ng-if="message.username != ctrl.userInfo.username">
+               <!-- <td ng-if="message.username == ctrl.userInfo.username">
+                <td ng-if="message.username != ctrl.userInfo.username">-->
+                <td>
                     <table>
                         <tr>
                             <td ng-if="message.username == ctrl.userInfo.username" class="messaggio_in">
@@ -65,9 +66,6 @@
                     </table>
                 </td>
 
-                <td ng-if="message.username != ctrl.userInfo.username" width="150px">
-
-                </td>
 
             </tr>
         </table>
