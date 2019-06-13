@@ -396,7 +396,8 @@ FOOTER
     padding-top: 9px;
     padding-left: 100px;
 }
-
+/*
+TODO togliere commenti
 .btn {
     position: relative;
     border: none;
@@ -410,7 +411,7 @@ FOOTER
 }
 
 .btn:hover {background: dodgerblue;}
-
+*/
 .info {
     border: 2px solid dodgerblue;
     background-color: #555555;
