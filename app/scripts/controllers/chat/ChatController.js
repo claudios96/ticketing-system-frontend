@@ -78,9 +78,10 @@ mainAngularModule
                 // Reset the messageContent input
                 ctrl.messageContent = '';
 
-                refreshChatFn(chatData);
+                //setTimeout(refreshChatFn(chatData), 1000);
 
             }
+
 
 
             ctrl.sendMessage = sendMessageFn;
