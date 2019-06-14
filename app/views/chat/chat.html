@@ -1,19 +1,35 @@
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CHAT TEMP</title>
-</head>
-<body >
-PAGINA DI PROVA {{ctrl.id}} - {{ctrl.type}}
+<style>
+    .messaggio_out {
+        background: #ebebeb none repeat scroll 0 0;
+        border-radius: 3px;
+        color: white;
+        font-size: 14px;
+        margin: 0;
+        padding: 5px 10px 5px 12px;
+        word-break: break-word;
+        /*word-break: break-all;*/
+        float: right;
+    }
+
+    .messaggio_in {
+        background: #05728f none repeat scroll 0 0;
+        border-radius: 3px;
+        color: white;
+        font-size: 14px;
+        margin: 0;
+        padding: 5px 10px 5px 12px;
+        word-break: break-word;
+        /*word-break: break-all;*/
+        float:left;
+    }
+
+    .colonna {
+        float: right;
+    }
 
 
-</body>
-</html>
--->
+</style>
 
-<!-- TODO : sostituire i tag html con codice css-->
 <div>
     <div class="row">
         <div class="col-lg-12" align="center">
@@ -24,103 +40,115 @@ PAGINA DI PROVA {{ctrl.id}} - {{ctrl.type}}
         <!-- /.col-lg-12 -->
 
     </div>
-<!--
-    <div class="col-lg-12" align="center">
-        <table ng-repeat="m in ctrl.messages" width="100%">
 
-            <-- TODO : a sx cosa scrivo io e a dx tutti gli altri --
-            <tr bgcolor="#ffebcd">
 
-                <td>{{m.sender}} alle {{m.time}} ha scritto</td>
-
-            </tr>
-
-            <tr bgcolor="#ffebcd" align="right">
-
-                <td>{{m.data}}</td>
-            </tr>
-            <tr>
-                <td height="10"></td>
-            </tr>
-        </table>
-
-    </div>
--->
 
     <ul>
-        <table ng-repeat="message in ctrl.messages">
+        <table ng-repeat="message in ctrl.messages" width="100%">
             <tr>
-                <td valign="top" class="avatar" width="5%"> <img class="img-circle" style="width:100%;" src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" /></td>
+
                 <td>
-                    <table width="100%">
-                        <tr><td>{{message.sender}} (user Type)</td></tr>
-                        <tr><td>{{ message.date | date:"MM/dd/yyyy 'ore' h:mma" }} </td></tr>
-                        <tr><td bgcolor="#C2FBFE">{{ message.content }}</td></tr>
+
+                    <table ng-if="message.username == ctrl.userInfo.username" width="100%">
+                        <tr>
+                            <td class="colonna">{{message.completeName}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="messaggio_out">
+                                {{ message.text }}
+                            </td>
+                        </tr>
+
+                        <tr><td height="20px"></td></tr>
                     </table>
+
+                    <table ng-if="message.username != ctrl.userInfo.username" width="100%">
+
+                        <tr>
+                            <td>{{message.completeName}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="messaggio_in">
+                                {{ message.text }}
+                            </td>
+                        </tr>
+
+                        <tr><td height="20px"></td></tr>
+                    </table>
+
+
+
+
+
+                    <!-- codice che produceva doppioni
+                    <table width="100%">
+
+                       <span ng-show="message.username == ctrl.userInfo.username">
+                            <tr>
+                                <td class="colonna">{{message.completeName}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="messaggio_out">
+                                {{ message.text }} - {{message.username}} , {{ctrl.userInfo.username}}
+                                </td>
+                            </tr>
+                        </span>
+
+
+                        <span ng-show="message.username != ctrl.userInfo.username">
+                            <tr>
+                                <td>{{message.completeName}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="messaggio_in">
+                                {{ message.text }} - {{message.username}} , {{ctrl.userInfo.username}}
+                                </td>
+                            </tr>
+                        </span>
+
+
+
+
+                        <tr><td height="20px"></td></tr>
+                    </table>
+
+                    -->
                 </td>
+
+
             </tr>
         </table>
     </ul>
 
 
-<!--
-    <div class="col-lg-12" align="center">
-        <input type="text" style="width:90%; height:100px">
-        <button class="btn btn-primary" ng-click="ctrl.inviaRisposta()">Invia</button>
-
-    </div>
--->
     <div class="col-lg-12" align="center" ng-controller="ChatCtrl">
         <form>
-            <input ng-model="ctrl.messageContent" type="text" style="width:90%; height:50px" placeholder="Scrivi un messaggio..." />
-            <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()">Invia</button>
+            <input ng-model="ctrl.messageContent" type="text" style="width:90%; height:50px" placeholder="Scrivi un messaggio..."/>
+
+            <!--<textarea ng-model="ctrl.messageContent" style="width:90%; height:150px" placeholder="Scrivi un messaggio..." autofocus></textarea>-->
+
+            <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()" style="vertical-align: center;">Invia</button>
         </form>
     </div>
 </div>
 
-<!--
-<div>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 ng-show="ctrl.type == 'prodotto'" class="page-header">Chat prodotto {{ctrl.id}}</h1>
-            <h1 ng-show="ctrl.type == 'leader-member'" class="page-header">Chat leader-member ticket {{ctrl.id}}</h1>
-            <h1 ng-show="ctrl.type == 'team'" class="page-header">Chat team {{ctrl.id}}</h1>
-        </div>
-
-    </div>
-    <div class="col-lg-12">
-        <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Messaggi</div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table id="datatable" datatable="ng" class="table table-striped table-bordered"
-                               dt-options="dtOptions" dt-column-defs="dtColumnDefs">
-
-                            <tbody ng-repeat="m in ctrl.messages">
-                            <tr>
-
-                                <td>{{m.sender}} alle {{m.time}} ha scritto</td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>{{m.data}}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn btn-primary" ng-click="ctrl.refreshProduct()">Aggiorna dati</button>
-            <button class="btn btn-success" ui-sref="productsoftware.create" ng-disabled="!hasPermission('software_create')">Aggiungi Prodotto Software</button>
-        </div>
-    </div>
-</div>
--->

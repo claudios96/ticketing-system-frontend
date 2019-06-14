@@ -8,53 +8,82 @@
  */
 
 mainAngularModule
-    .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
+    .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
         'DTColumnDefBuilder', 'AclService', 'httpService',
-        function ($scope, $state, $stateParams, AuthFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
 
             var ctrl = this;
-
-
-
-            /*
-                        $scope.dtOptions = DTOptionsBuilder.newOptions().withDOM('C<"clear">lfrtip');
-                        $scope.dtColumnDefs = [
-                            DTColumnDefBuilder.newColumnDef(4).notSortable()
-                        ];
-            */
-
-            // TODO : manca il get dal be
+            var chatData;
+            ctrl.messages = [];
 
 
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
-                //console.log('--->',ctrl.userInfo.userRole);
-                ctrl.id = $stateParams.chatId;
+                ctrl.subjsct_id = $stateParams.chatId;
                 ctrl.type = $stateParams.chatType;
 
-                ctrl.messages = [];
-                // creazione dummy messages
-                /*for (var i=0;i<5;i++) {
-                    ctrl.messages.push({sender:'Giovanni', date: new Date(), content:'Ciao mondo'});
 
-                }*/
+                console.log("ChatController", "init()")
+
+
+                if (ctrl.subjsct_id != null) {
+
+                    chatData = {
+                        'username': ctrl.userInfo.username,
+                        'type': ctrl.type,
+                        'subject_id': ctrl.subjsct_id
+                    };
+
+                    refreshChatFn(chatData);
+                }
+
             }
 
-            init();
+            function refreshChatFn(chatData) {
+                console.log('refresh chat');
+
+                ChatDataFactory.GetMsgs(chatData.username, chatData.type, chatData.subject_id,
+                    function (response) {
+
+                        ctrl.messages = response.messages;
+                        ctrl.id = response.id;
+
+                    }, function (error) {
+                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
+                    });
+            }
 
             function  sendMessageFn() {
+                console.log('insert message');
                 // Don't send an empty message
                 if (!ctrl.messageContent || ctrl.messageContent === '') {
                     return;
                 }
 
-                ctrl.messages.push({sender:'Giovanni', date: new Date(), content: ctrl.messageContent});
+                console.log("ChatController", "send()")
+                console.log("user_id", ctrl.userInfo.userId)
+                console.log("text", ctrl.messageContent)
+                console.log("chat_id", ctrl.id)
+
+
+                ChatDataFactory.InsertMsg(Number(ctrl.userInfo.userId), String(ctrl.messageContent), Number(ctrl.id),
+                    function (response) {
+                        console.log(response);
+                        ctrl.messages.push(response);
+
+                    }, function (response) {
+                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura del messaggio"})
+                    });
 
                 // Reset the messageContent input
                 ctrl.messageContent = '';
 
+                refreshChatFn(chatData);
+
             }
 
+
             ctrl.sendMessage = sendMessageFn;
+            init();
 
         }]);
