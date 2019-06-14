@@ -394,11 +394,9 @@ FOOTER
     position: fixed;
     background-color: #f8f8f8;
     padding-top: 9px;
-    padding-left: 100px;
 }
-/*
-TODO togliere commenti
-.btn {
+
+.btn_footer {
     position: relative;
     border: none;
     border-radius: 8px;
@@ -408,12 +406,18 @@ TODO togliere commenti
     display: inline-block;
     transition-duration: 0.4s;
     margin: auto;
+
+}
+
+.btn_footer:hover {
+    background: dodgerblue;
+    color: white;
 }
 
 .btn:hover {background: dodgerblue;}
-*/
+
 .info {
     border: 2px solid dodgerblue;
-    background-color: #555555;
+    background-color: #ffffff;
     color: dodgerblue;
 }
