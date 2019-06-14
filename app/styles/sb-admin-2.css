@@ -382,6 +382,34 @@ table.dataTable thead .sorting:after {
 CHAT CSS
 */
 
+.messaggio_out {
+    background: #25D366 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    word-break: break-word;
+    /*word-break: break-all;*/
+    float: right;
+}
+
+.messaggio_in {
+    background: #05728f none repeat scroll 0 0;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    word-break: break-word;
+    /*word-break: break-all;*/
+    float:left;
+}
+
+.colonna {
+    float: right;
+}
+
 /*
 FOOTER
 */
