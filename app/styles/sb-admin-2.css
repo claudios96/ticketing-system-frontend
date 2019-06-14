@@ -388,31 +388,35 @@ FOOTER
 
 .my-footer {
     bottom: 0;
-    height: 70px;
+    height: 60px;
     width: 100%;
     clear: both;
     position: fixed;
     background-color: #f8f8f8;
     padding-top: 9px;
-    padding-left: 100px;
+    padding-right: 2%;
 }
 
-.btn {
+.btn_footer {
     position: relative;
     border: none;
     border-radius: 8px;
-    padding: 14px 28px;
+    padding: 10px 28px;
     font-size: 16px;
     cursor: pointer;
     display: inline-block;
     transition-duration: 0.4s;
     margin: auto;
+    float: right;
 }
 
-.btn:hover {background: dodgerblue;}
+.btn_footer:hover {
+    background: dodgerblue;
+    color: #ffffff;
+}
 
 .info {
     border: 2px solid dodgerblue;
-    background-color: #555555;
+    background-color: #ffffff;
     color: dodgerblue;
 }
