@@ -59,15 +59,12 @@ mainAngularModule.config(['$stateProvider',
             .state('user.guide', {
                 url: '/guide',
                 templateUrl: 'views/user/user-guide.html',
-                controller: 'UserGuideController',
-                controllerAs: 'ctrl',
 
             })
             .state('user.guideAdmin', {
                 url: '/guideAdmin',
                 templateUrl: 'views/user/user-guide-admin.html',
-                controller: 'UserGuideController',
-                controllerAs: 'ctrl',
+
 
             })
     }]);

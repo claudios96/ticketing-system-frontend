@@ -14,21 +14,32 @@ mainAngularModule
             restrict: 'E',
             replace: true,
             scope: {},
-            controller: function ($scope) {
+            controller: function ($scope, $state) {
 
                 $scope.setFooter = function () {
                     $scope.userInfo = AuthFactory.getAuthInfo();
                     console.log($scope.userInfo);
+
                     if ($scope.userInfo == null) {
 
                     } else if ($scope.userInfo.userRole === 'ADMIN') {
                         $scope.role = "Amministratore"
-                        $scope.guide = "user.guideAdmin"
 
                     } else if ($scope.userInfo.userRole === 'CUSTOMER') {
                         $scope.role = "Cliente"
-                        $scope.guide = "user.guide"
                     }
+
+                    $scope.getState = function(){
+                        if ($scope.userInfo == null) {
+
+                        } else if ($scope.userInfo.userRole === 'ADMIN') {
+                            $state.go('user.guideAdmin');
+
+                        } else if ($scope.userInfo.userRole === 'CUSTOMER') {
+                            $state.go('user.guide');
+                        }
+                    };
+
 
                 };
 
