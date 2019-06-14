@@ -22,21 +22,19 @@ mainAngularModule
 
                     if ($scope.userInfo == null) {
 
-                    } else if ($scope.userInfo.userRole === 'ADMIN') {
-                        $scope.role = "Amministratore"
-
-                    } else if ($scope.userInfo.userRole === 'CUSTOMER') {
+                    }  else if ($scope.userInfo.userRole === 'CUSTOMER') {
                         $scope.role = "Cliente"
+                    } else {
+                        $scope.role = "Amministratore"
                     }
 
                     $scope.getState = function(){
                         if ($scope.userInfo == null) {
 
-                        } else if ($scope.userInfo.userRole === 'ADMIN') {
-                            $state.go('user.guideAdmin');
-
                         } else if ($scope.userInfo.userRole === 'CUSTOMER') {
                             $state.go('user.guide');
+                        } else {
+                            $state.go('user.guideAdmin');
                         }
                     };
 
