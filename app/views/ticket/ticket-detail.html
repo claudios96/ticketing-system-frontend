@@ -1,0 +1,74 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12" align="center">
+            <h1 class="page-header">Dettaglio ticket {{ctrl.ticket.id}}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+
+    </div>
+
+    <!-- ctrl.ticket dovrebbe essere accessibile tramite notazione json -->
+
+    <div>
+        <table width="100%">
+            <tr class="dettaglioTicketRiga">
+                <td>ID</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.id}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Stato</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.currentTicketStatus}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Creato il</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.creationTimestamp}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Titolo</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.title}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Descrizione</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.description}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Assegnato a</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.assignee.firstName}} {{ctrl.ticket.assignee.lastName}} [Ruolo: {{ctrl.ticket.assignee.role}} , ID:{{ctrl.ticket.assignee.id}}]</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Del cliente</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.customer.firstName}} {{ctrl.ticket.customer.lastName}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Relativo al prodotto</td>
+                <td class="dettaglioTicketColonna">Nome: {{ctrl.ticket.target.name}} Descrizione: {{ctrl.ticket.target.description}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Priorità cliente</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.customerPriority}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+            <tr class="dettaglioTicketRiga">
+                <td>Priorità team</td>
+                <td class="dettaglioTicketColonna">{{ctrl.ticket.teamPriority}}</td>
+            </tr><tr class="dettaglioTicketInterlinea"><td colspan="2"></td></tr>
+
+        </table>
+
+    </div>
+
+    <div align="center">
+        <button type="submit" class="btn btn-primary" ng-click="ctrl.showProductsList()">Torna ad elenco prodotti</button>
+    </div>
+
+
+
+</div>

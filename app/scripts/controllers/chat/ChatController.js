@@ -83,8 +83,21 @@ mainAngularModule
             }
 
 
+            // funzione che mostra la pagina di dettaglio del ticket
+            // TODO : si può migliorare la ricerca del pattern tramite un match su 'ID: * '
+            function showTicketDetailFn(id) {
+
+                // estrapolo dalla stringa l'id del ticket
+                var pos = id.indexOf("ID:");
+                var ticketID = id.substr(pos+4, id.length);
+                console.log('Visualizza il dettaglio del ticket ',ticketID);
+
+                $state.go('ticket.detail', {'ticketID': ticketID});
+
+            }
 
             ctrl.sendMessage = sendMessageFn;
+            ctrl.showTicketDetail = showTicketDetailFn;
             init();
 
         }]);
