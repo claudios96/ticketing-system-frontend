@@ -51,5 +51,17 @@ mainAngularModule.config(['$stateProvider',
                 templateUrl: 'views/ticket/ticket-list-customer.html',
                 controller: 'TicketListCustomerCtrl',
                 controllerAs: 'ctrl',
+            })
+            .state('ticket.detail', {
+                //url: '/{ticketID: int}/ticket-detail',
+                url: '/ticket-detail',
+                templateUrl: 'views/ticket/ticket-detail.html',
+                controller: 'TicketDetailCtrl',
+                controllerAs: 'ctrl',
+                params: {
+                    ticketID: null,
+                    assistantID: null
+                }
+
             });
     }]);

@@ -448,3 +448,38 @@ FOOTER
     background-color: #ffffff;
     color: dodgerblue;
 }
+
+/*
+BOTTONE DETTAGLIO TICKET - CHAT PRODOTTO
+ */
+.btn_ticketDetail {
+    /*position: relative;*/
+    background: #428bca;
+    border: #0C789E;
+    border-radius: 8px;
+    padding: 3px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    transition-duration: 0.4s;
+    margin: auto;
+    margin-left: 25px;
+}
+.btn_ticketDetail:hover {
+    background: dodgerblue;
+    color: #ffffff;
+}
+
+/*
+VIEW DETTAGLIO TICKET
+ */
+.dettaglioTicketInterlinea {
+    height: 15px;
+}
+.dettaglioTicketRiga {
+    background: lightgrey;
+    font-size: 16px;
+}
+.dettaglioTicketColonna {
+    float: right;
+}

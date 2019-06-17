@@ -392,6 +392,27 @@ mainAngularModule
                         })
             }
 
+            // ritorna il ticket con l'id specificato
+            function GetSingleTicketFn(ticketId, successCB, errorCB) {
+                $http({
+                    method: 'GET',
+                    //url: _endPointJSON + ticketId + '/fromAssistant'
+                    url: _endPointJSON + ticketId
+                })
+                    .then(function (response) {
+                            if (successCB) {
+                                successCB(response.data);
+                            }
+                            //return response.data;
+                        },
+                        function (response) {
+                            if (errorCB) {
+                                errorCB(response);
+                            }
+                            console.error(response.data);
+                            ToasterNotifierHandler.handleError(response);
+                        });
+            }
             /*
             thisCrudService.GetTicketCategories = GetTicketCategoriesFn;
             thisCrudService.GetTicketCustomerPriorities = GetTicketCustomerPrioritiesFn;
@@ -412,6 +433,8 @@ mainAngularModule
             thisCrudService.Remove = RemoveFn;
             thisCrudService.DownloadAttached = DownloadAttachedFn;
             thisCrudService.getMetadata = getMetadata;
+
+            thisCrudService.GetSingleTicket = GetSingleTicketFn;
 
             return thisCrudService;
         }]);
