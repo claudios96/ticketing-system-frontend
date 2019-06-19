@@ -50,7 +50,7 @@ mainAngularModule
 
             function InsertFn(userId, text, chatId, successCB, errorCB) {
 
-                console.log("ChatDataFactory", "insertFn()")
+                console.log("ChatDataFactory", "insertFn()");
 
                 $http({
                     method: 'PUT',

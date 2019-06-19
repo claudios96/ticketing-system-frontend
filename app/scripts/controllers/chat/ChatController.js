@@ -8,14 +8,27 @@
  */
 
 mainAngularModule
-    .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
-        'DTColumnDefBuilder', 'AclService', 'httpService',
-        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
+    .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', '$mdDialog', 'myService',
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, $mdDialog, myService) {
 
             var ctrl = this;
             var chatData;
             ctrl.messages = [];
 
+
+            function refreshChatFn(chatData) {
+                console.log('refresh chat');
+
+                ChatDataFactory.GetMsgs(chatData.username, chatData.type, chatData.subject_id,
+                    function (response) {
+
+                        ctrl.messages = response.messages;
+                        ctrl.id = response.id;
+
+                    }, function (error) {
+                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
+                    });
+            }
 
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
@@ -39,19 +52,7 @@ mainAngularModule
 
             }
 
-            function refreshChatFn(chatData) {
-                console.log('refresh chat');
 
-                ChatDataFactory.GetMsgs(chatData.username, chatData.type, chatData.subject_id,
-                    function (response) {
-
-                        ctrl.messages = response.messages;
-                        ctrl.id = response.id;
-
-                    }, function (error) {
-                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
-                    });
-            }
 
             function  sendMessageFn() {
                 console.log('insert message');
@@ -96,8 +97,47 @@ mainAngularModule
 
             }
 
+            $scope.showDialogInsertSnippet = function() {
+
+                var userID = ctrl.userInfo.userId;
+
+                var chatID = ctrl.id;
+
+                myService.dataObj = {
+                    'userID': userID,
+                    'chatID': chatID
+                };
+
+                $mdDialog.show({
+                    controller: 'DialogInsertSnippetController',
+                    templateUrl: 'views/chat/dialogInsertSnippet.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+
+                });
+            };
+
+
+            $scope.showDialogSnippetDetail = function(snippetName) {
+                myService.dataObj = {
+                    'snippetName': snippetName
+                };
+
+                $mdDialog.show({
+                    controller: 'DialogShowSnippetController',
+                    templateUrl: 'views/chat/dialogShowSnippet.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+
+                });
+            }
+
+
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
+
+
             init();
 
         }]);
+

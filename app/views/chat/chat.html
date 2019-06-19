@@ -29,6 +29,10 @@
                         <tr>
                             <td class="messaggio_out">
                                 {{ message.text }}
+
+                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)" style="vertical-align: center;">Snippet</button>
+
+
                             </td>
                         </tr>
 
@@ -50,6 +54,12 @@
                             <td class="messaggio_in">
                                 {{ message.text }}
                                 <button ng-if="message.username == 'System'" type="submit" class="btn_ticketDetail" ng-click="ctrl.showTicketDetail(message.text)" style="vertical-align: center;">Visualizza dettaglio</button>
+
+                                <!-- ng-if="message.type == 'SNIPPET'" -->
+                                <button  type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)" style="vertical-align: center;">Snippet</button>
+
+
+
                             </td>
                         </tr>
 
@@ -57,52 +67,6 @@
                     </table>
 
 
-
-
-
-                    <!-- codice che produceva doppioni
-                    <table width="100%">
-
-                       <span ng-show="message.username == ctrl.userInfo.username">
-                            <tr>
-                                <td class="colonna">{{message.completeName}}</td>
-                            </tr>
-
-                            <tr>
-                                <td class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
-                            </tr>
-
-                            <tr>
-                                <td class="messaggio_out">
-                                {{ message.text }} - {{message.username}} , {{ctrl.userInfo.username}}
-                                </td>
-                            </tr>
-                        </span>
-
-
-                        <span ng-show="message.username != ctrl.userInfo.username">
-                            <tr>
-                                <td>{{message.completeName}}</td>
-                            </tr>
-
-                            <tr>
-                                <td>{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
-                            </tr>
-
-                            <tr>
-                                <td class="messaggio_in">
-                                {{ message.text }} - {{message.username}} , {{ctrl.userInfo.username}}
-                                </td>
-                            </tr>
-                        </span>
-
-
-
-
-                        <tr><td height="20px"></td></tr>
-                    </table>
-
-                    -->
                 </td>
 
 
@@ -118,7 +82,9 @@
             <!--<textarea ng-model="ctrl.messageContent" style="width:90%; height:150px" placeholder="Scrivi un messaggio..." autofocus></textarea>-->
 
             <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()" style="vertical-align: center;">Invia</button>
+
+            <button ng-click="showDialogInsertSnippet(2,t.id)" class="btn btn-primary btn-chat">Invia Snippet</button>
+
         </form>
     </div>
 </div>
-
