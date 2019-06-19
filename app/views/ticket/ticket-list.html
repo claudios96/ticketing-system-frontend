@@ -83,11 +83,9 @@
                                 </td>
 
 
-                                <!-- TODO POTREBBE CREARE PROBLEMI USARE UN CONTROLLER DIVERSO DA QUELLO DELLA VIEW -->
                                 <td ng-controller="ChatCtrl as chatctrl" ng-show="chatctrl.userInfo.userRole == 'TEAM_LEADER' || chatctrl.userInfo.userRole == 'TEAM_MEMBER'">
 
-                                    <!-- TODO potremmo inserire il nome del team member e del team leader nei titoli -->
-                                    <button ng-if="chatctrl.userInfo.userRole == 'TEAM_LEADER'"
+                                    <button ng-if="(chatctrl.userInfo.userRole == 'TEAM_LEADER')"
                                             title = "Avvia chat con Team Member"
                                             ui-sref="chat.visualizza({chatId: t.id, chatType: 'TICKET'})"
                                             class="btn btn-primary">
@@ -95,8 +93,7 @@
                                     </button>
 
 
-
-                                    <button ng-if="chatctrl.userInfo.userRole == 'TEAM_MEMBER'"
+                                    <button ng-if="(chatctrl.userInfo.userRole == 'TEAM_MEMBER')"
                                             title = "Avvia chat con Team Leader"
                                             ui-sref="chat.visualizza({chatId: t.id, chatType: 'TICKET'})"
                                             class="btn btn-primary">

@@ -132,6 +132,26 @@ mainAngularModule
                 });
             }
 
+            function CheckIfChatExistsFn(ticketID) {
+                console.log('CheckIfChatExists chat, ticketID: ', ticketID);
+
+                ChatDataFactory.ChatExists(ticketID,
+                    function (response) {
+                        console.log('"---> RESPONSO : ', ticketID, '-',response);
+
+                        return response.data;
+
+                    }, function (error) {
+                        ErrorStateRedirector.GoToErrorPage({
+                            Messaggio: 'Errore in CheckIfChatExists :', error});
+                    });
+
+
+            }
+
+            ctrl.CheckIfChatExists = CheckIfChatExistsFn;
+
+
 
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
