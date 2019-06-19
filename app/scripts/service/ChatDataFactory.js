@@ -19,11 +19,11 @@ mainAngularModule
 
             thisService.InsertMsg = InsertFn;
             thisService.GetMsgs = GetMsgsFn;
-
+            thisService.ChatExists = ChatExistsFn;
 
             function GetMsgsFn(username, type, id, successCB, errorCB) {
 
-                console.log("ChatDataFactory", "getMsgsFn()")
+                console.log("ChatDataFactory", "getMsgsFn()");
 
                 $http({
                     method: 'GET',
@@ -50,7 +50,7 @@ mainAngularModule
 
             function InsertFn(userId, text, chatId, successCB, errorCB) {
 
-                console.log("ChatDataFactory", "insertFn()")
+                console.log("ChatDataFactory", "insertFn()");
 
                 $http({
                     method: 'PUT',
@@ -75,6 +75,32 @@ mainAngularModule
                         });
             }
 
+
+            function ChatExistsFn(ticketID, successCB, errorCB) {
+
+                console.log('ChatDataFactory', 'CheckIfChatExists()');
+
+                $http({
+                    method: 'GET',
+                    url: _endPointJSON + 'exists',
+                    params: {
+                        'ticket_id': ticketID
+                    }
+                })
+                    .then(function (response) {
+                            console.log(response);
+                            if (successCB) {
+                                successCB(response.data);
+                            }
+                        },
+                        function (response) {
+                            if (errorCB) {
+                                errorCB(response);
+                            }
+                            console.error(response.data);
+                            ToasterNotifierHandler.handleError(response);
+                        });
+            }
 
             return thisService;
         }]);

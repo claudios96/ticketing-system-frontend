@@ -240,4 +240,6 @@ mainAngularModule
                     $scope.index = index;
                 };*/
 
+
+
             }]);

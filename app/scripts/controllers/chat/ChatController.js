@@ -9,8 +9,8 @@
 
 mainAngularModule
     .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
-        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL',
-        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL) {
+        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService',
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService) {
 
             var ctrl = this;
             var chatData;
@@ -18,6 +18,20 @@ mainAngularModule
             ctrl.messages = [];
 
             var websocketPath = BACKEND_BASE_URL;
+
+            function refreshChatFn(chatData) {
+                console.log('refresh chat');
+
+                ChatDataFactory.GetMsgs(chatData.username, chatData.type, chatData.subject_id,
+                    function (response) {
+
+                        ctrl.messages = response.messages;
+                        ctrl.id = response.id;
+
+                    }, function (error) {
+                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
+                    });
+            }
 
             function connect() {
 
@@ -59,22 +73,10 @@ mainAngularModule
 
             }
 
-            function refreshChatFn(chatData) {
-                console.log('refresh chat');
 
-                ChatDataFactory.GetMsgs(chatData.username, chatData.type, chatData.subject_id,
-                    function (response) {
-
-                        ctrl.messages = response.messages;
-                        ctrl.id = response.id;
-
-                    }, function (error) {
-                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
-                    });
-            }
 
             function  sendMessageFn() {
-                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent)];
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('MESSAGE')];
 
                 console.log('insert message');
                 // Don't send an empty message
@@ -120,8 +122,67 @@ mainAngularModule
 
             }
 
+            $scope.showDialogInsertSnippet = function() {
+
+                var userID = ctrl.userInfo.userId;
+
+                var chatID = ctrl.id;
+
+                myService.dataObj = {
+                    'userID': userID,
+                    'chatID': chatID
+                };
+
+                $mdDialog.show({
+                    controller: 'DialogInsertSnippetController',
+                    templateUrl: 'views/chat/dialogInsertSnippet.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+
+                });
+            };
+
+
+            $scope.showDialogSnippetDetail = function(snippetName) {
+                myService.dataObj = {
+                    'snippetName': snippetName
+                };
+
+                $mdDialog.show({
+                    controller: 'DialogShowSnippetController',
+                    templateUrl: 'views/chat/dialogShowSnippet.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+
+                });
+            }
+
+            function CheckIfChatExistsFn(ticketID) {
+                console.log('CheckIfChatExists chat, ticketID: ', ticketID);
+
+                ChatDataFactory.ChatExists(ticketID,
+                    function (response) {
+                        console.log('"---> RESPONSO : ', ticketID, '-',response);
+
+                        return response.data;
+
+                    }, function (error) {
+                        ErrorStateRedirector.GoToErrorPage({
+                            Messaggio: 'Errore in CheckIfChatExists :', error});
+                    });
+
+
+            }
+
+            ctrl.CheckIfChatExists = CheckIfChatExistsFn;
+
+
+
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
+
+
             init();
 
         }]);
+
