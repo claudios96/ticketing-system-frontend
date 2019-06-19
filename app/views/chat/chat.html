@@ -45,9 +45,11 @@
                             <td>{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }} </td>
                         </tr>
 
+                        <!-- se messaggio di notifica , mostro bottone dettaglio ticket-->
                         <tr>
                             <td class="messaggio_in">
                                 {{ message.text }}
+                                <button ng-if="message.username == 'System'" type="submit" class="btn_ticketDetail" ng-click="ctrl.showTicketDetail(message.text)" style="vertical-align: center;">Visualizza dettaglio</button>
                             </td>
                         </tr>
 
