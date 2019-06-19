@@ -76,7 +76,7 @@ mainAngularModule
 
 
             function  sendMessageFn() {
-                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent)];
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('MESSAGE')];
 
                 console.log('insert message');
                 // Don't send an empty message
