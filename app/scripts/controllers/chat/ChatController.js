@@ -9,12 +9,31 @@
 
 mainAngularModule
     .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
-        'DTColumnDefBuilder', 'AclService', 'httpService',
-        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService) {
+        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL',
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL) {
 
             var ctrl = this;
             var chatData;
+            var stompClient = null;
             ctrl.messages = [];
+
+            var websocketPath = BACKEND_BASE_URL;
+
+            function connect() {
+
+                var socket;
+
+                socket = new SockJS(websocketPath + '/chat-websocket');
+                stompClient = Stomp.over(socket);
+
+                stompClient.connect({}, function(frame) {
+                    console.log('DEBUG: Connected: ' + frame);
+                    stompClient.subscribe('/t/' + chatData.type + '/' + chatData.subject_id, function(response) {
+                        ctrl.messages.push(JSON.parse(response.body));
+                        $scope.$apply();
+                    });
+                });
+            }
 
 
             function init() {
@@ -35,6 +54,7 @@ mainAngularModule
                     };
 
                     refreshChatFn(chatData);
+                    connect();
                 }
 
             }
@@ -54,6 +74,8 @@ mainAngularModule
             }
 
             function  sendMessageFn() {
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent)];
+
                 console.log('insert message');
                 // Don't send an empty message
                 if (!ctrl.messageContent || ctrl.messageContent === '') {
@@ -66,6 +88,8 @@ mainAngularModule
                 console.log("chat_id", ctrl.id)
 
 
+                stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
+/*
                 ChatDataFactory.InsertMsg(Number(ctrl.userInfo.userId), String(ctrl.messageContent), Number(ctrl.id),
                     function (response) {
                         console.log(response);
@@ -74,7 +98,7 @@ mainAngularModule
                     }, function (response) {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura del messaggio"})
                     });
-
+*/
                 // Reset the messageContent input
                 ctrl.messageContent = '';
 
