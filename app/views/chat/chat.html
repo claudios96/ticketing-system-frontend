@@ -83,7 +83,11 @@
 
             <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()" style="vertical-align: center;">Invia</button>
 
-            <button ng-click="showDialogInsertSnippet(2,t.id)" class="btn btn-primary btn-chat">Invia Snippet</button>
+            <button ng-click="showDialogInsertSnippet()" class="btn btn-primary btn-chat">Invia Snippet</button>
+
+            <input type="file"
+                   custom-on-change="selectedFile"/>
+            <!--<button  class="btn btn-primary btn-lg btn-block" ng-click="ctrl.uploadFile()">Upload</button>-->
 
         </form>
     </div>

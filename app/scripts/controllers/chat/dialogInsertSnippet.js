@@ -5,26 +5,26 @@ mainAngularModule.controller('DialogInsertSnippetController',['$scope','myServic
 
     $scope.sendSnippet = function () {
         var code = document.getElementById('snippetCode').value;
-        console.log(code);
-
+        console.log('send snippet', code);
 
         /* invio messaggio */
         var userID = myService.dataObj.userID;
         var chatID = myService.dataObj.chatID;
+        var chatType = myService.dataObj.type;
+        var subject_id = myService.dataObj.subject_id;
+
         console.log(userID, '-', chatID);
 
         var snippetName = '<<<SNIPPET>>>' + chatID + userID;
 
-        /*
-        ChatDataFactory.InsertMsg(Number(userID), String(snippetName), Number(chatID),
-            function (response) {
-                console.log(response);
-                //ctrl.messages.push(response);
+        var params = [Number(chatID), Number(userID), String(code), String('SNIPPET')];
 
-            }, function (response) {
-                ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura dello snippet"});
-            });
-        */
+        // Don't send an empty snippet
+        if (!code || code === '') {
+            return;
+        }
+
+        stompClient.send(BACKEND_BASE_URL + '/c/' + chatType + '/' + subject_id, {}, params.toString());
 
         $mdDialog.cancel();
     };

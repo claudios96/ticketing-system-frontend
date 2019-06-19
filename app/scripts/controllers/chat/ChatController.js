@@ -9,8 +9,8 @@
 
 mainAngularModule
     .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
-        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService',
-        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService) {
+        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService', 'util',
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService, util) {
 
             var ctrl = this;
             var chatData;
@@ -52,19 +52,19 @@ mainAngularModule
 
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
-                ctrl.subjsct_id = $stateParams.chatId;
+                ctrl.subject_id = $stateParams.chatId;
                 ctrl.type = $stateParams.chatType;
 
 
                 console.log("ChatController", "init()")
 
 
-                if (ctrl.subjsct_id != null) {
+                if (ctrl.subject_id != null) {
 
                     chatData = {
                         'username': ctrl.userInfo.username,
                         'type': ctrl.type,
-                        'subject_id': ctrl.subjsct_id
+                        'subject_id': ctrl.subject_id
                     };
 
                     refreshChatFn(chatData);
@@ -124,13 +124,11 @@ mainAngularModule
 
             $scope.showDialogInsertSnippet = function() {
 
-                var userID = ctrl.userInfo.userId;
-
-                var chatID = ctrl.id;
-
                 myService.dataObj = {
-                    'userID': userID,
-                    'chatID': chatID
+                    'userID': ctrl.userInfo.userId,
+                    'chatID': ctrl.id,
+                    'type': ctrl.type,
+                    'subject_id': ctrl.subject_id
                 };
 
                 $mdDialog.show({
@@ -174,12 +172,83 @@ mainAngularModule
 
             }
 
+            /**
+             * @ngdoc           function
+             * @name            selectedFile
+             * @description     Function converts a file in base64 string.
+             *
+             * @param event     event containing the file
+             */
+            $scope.selectedFile = function (event) {
+                util.getBase64(event.target.files[0])
+                    .then(result => {
+                    //file = result;
+                    console.log('event', event);
+                uploadFileFn(event.target.files[0].name, result);
+            })
+            };
+
+
+            /**
+             * @ngdoc               function
+             * @name                upload
+             * @description         Rest Service to POST the uploaded file.
+             *
+             * @param file  the file to be saved
+             */
+
+            function uploadFileFn(filename, file) {
+
+                console.log('uploadFn()', file);
+
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('FILE')];
+                stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
+/*
+                ChatDataFactory.InsertMsg(ctrl.userInfo.userId, filename, ctrl.id, "FILE",
+                    function (response) {
+                        console.log(response);
+                        ctrl.messages.push(response);
+
+                    }, function (response) {
+                        //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura del messaggio"})
+                    });
+*/
+
+                ChatDataFactory.UploadFile(file, ctrl.id,  filename,
+                    function (response) {
+                        console.log(response);
+
+                        window.alert("file uploaded");
+
+                        getFileFn(ctrl.id, filename);
+
+                        $state.reload();
+
+                    }, function (response) {
+                        //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
+                    });
+
+            }
+
+            function getFileFn(chatId, filename) {
+
+                ChatDataFactory.GetFile(chatId, filename,
+                    function (response) {
+                        console.log(response);
+
+                        console.log('getFileFn()', response);
+
+                    }, function (response) {
+                        //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel caricamento del file"})
+                    });
+
+            }
+
+
             ctrl.CheckIfChatExists = CheckIfChatExistsFn;
-
-
-
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
+            ctrl.uploadFile = uploadFileFn;
 
 
             init();
