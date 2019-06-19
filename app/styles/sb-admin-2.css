@@ -365,7 +365,9 @@ table.dataTable thead .sorting:after {
 */
 
 .navbar-static-top {
-    z-index: 60
+    z-index: 60;
+    position: fixed;
+    width: 100%;
 }
 
 
