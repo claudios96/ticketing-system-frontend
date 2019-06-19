@@ -38,7 +38,9 @@ mainAngularModule
                     lastName: ctrl.registerForm.lastName,
                     email: ctrl.registerForm.email,
                     username: ctrl.registerForm.username,
-                    password: ctrl.registerForm.password
+                    password: ctrl.registerForm.password,
+                    slackAccount: ctrl.registerForm.slackAccount
+
                 };
 
                 console.log("doRegisterFn");

@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Choose company</label>
                                     <ui-select ng-model="ctrl.user.company" ng-disabled="!ctrl.isAdmin(ctrl.user.role) || ctrl.value">
@@ -92,6 +92,16 @@
                                             <span ng-bind="company.name"></span>
                                         </ui-select-choices>
                                     </ui-select>
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group"
+                                     ng-class="{'has-error': formEditUser.slackAccount.$invalid && formEditUser.slackAccount.$touched}">
+                                    <label>Slack account</label>
+                                    <input name="name" class="form-control" placeholder="Inserisci slack account"
+                                           ng-disabled="ctrl.value" ng-model="ctrl.user.slackAccount" required>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +118,9 @@
                                 </button>
                                 <button class="btn btn-danger" ng-click="ctrl.resetFields()">Reset</button>
                             </div>
+
                         </div>
+
                     </div>
                     <div ng-if="isDebug"> {{ctrl.user}}</div>
                     <div ng-if="isDebug"> {{ctrl.userGroups}}</div>
