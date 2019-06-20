@@ -20,6 +20,8 @@ mainAngularModule
             thisService.InsertMsg = InsertFn;
             thisService.GetMsgs = GetMsgsFn;
             thisService.ChatExists = ChatExistsFn;
+            thisService.UploadFile = UploadFileFn;
+            thisService.GetFile = GetFileFn;
 
             function GetMsgsFn(username, type, id, successCB, errorCB) {
 
@@ -102,5 +104,58 @@ mainAngularModule
                         });
             }
 
+
+            function UploadFileFn(data, chatId,  filename,  successCB, errorCB) {
+                console.log('ChatDataFactory', 'UploadFileFn()');
+
+                $http({
+                    method: 'POST',
+                    url: _endPointJSON + 'uploadFile',
+                    params: {
+                        'chat_id': chatId,
+                        'filename': filename,
+                        'data': data
+                    }
+                })
+                    .then(function (response) {
+                            console.log(response);
+                            if (successCB) {
+                                successCB(response.data);
+                            }
+                        },
+                        function (response) {
+                            if (errorCB) {
+                                errorCB(response);
+                            }
+                            console.error(response.data);
+                            ToasterNotifierHandler.handleError(response);
+                        });
+            }
+
+            function GetFileFn(chatId, filename,successCB, errorCB) {
+                console.log('ChatDataFactory', 'GetFileFn()');
+
+                $http({
+                    method: 'GET',
+                    url: _endPointJSON + 'getFile',
+                    params: {
+                        'chat_id': chatId,
+                        'filename': filename
+                    }
+                })
+                    .then(function (response) {
+                            console.log(response);
+                            if (successCB) {
+                                successCB(response.data);
+                            }
+                        },
+                        function (response) {
+                            if (errorCB) {
+                                errorCB(response);
+                            }
+                            console.error(response.data);
+                            ToasterNotifierHandler.handleError(response);
+                        });
+            }
             return thisService;
         }]);

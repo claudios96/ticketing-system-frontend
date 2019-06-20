@@ -201,8 +201,16 @@ mainAngularModule
 
                 console.log('uploadFn()', file);
 
-                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('FILE')];
+              /*  var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('FILE')];
+                TODO togliere commento
+
                 stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
+                */
+
+
+
+
+
 /*
                 ChatDataFactory.InsertMsg(ctrl.userInfo.userId, filename, ctrl.id, "FILE",
                     function (response) {
@@ -214,19 +222,33 @@ mainAngularModule
                     });
 */
 
-                ChatDataFactory.UploadFile(file, ctrl.id,  filename,
+                ChatDataFactory.UploadFile( file, ctrl.id,  filename,
                     function (response) {
                         console.log(response);
 
-                        window.alert("file uploaded");
+                        window.alert('file uploaded');
 
-                        getFileFn(ctrl.id, filename);
+                        //getFileFn(ctrl.id, filename);
 
-                        $state.reload();
+                        //$state.reload();
 
-                    }, function (response) {
+                    }, function () {
                         //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
                     });
+
+                // TODO : remove   usato per testing
+                ChatDataFactory.GetFile(ctrl.id, filename, function (response) {
+                    console.log('---->',response);
+
+                    //getFileFn(ctrl.id, filename);
+
+                    //$state.reload();
+
+                }, function () {
+                    //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
+                });
+
+
 
             }
 
@@ -249,7 +271,7 @@ mainAngularModule
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
             ctrl.uploadFile = uploadFileFn;
-
+            ctrl.getFile = getFileFn();
 
             init();
 
