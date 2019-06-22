@@ -14,6 +14,7 @@ mainAngularModule
 
 
             var thisService = {};
+            var stompClient = null;
 
             var _endPointJSON = BACKEND_BASE_URL + CHAT_ENDPOINT_URL;
 

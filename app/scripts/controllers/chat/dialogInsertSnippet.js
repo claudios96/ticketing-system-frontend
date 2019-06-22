@@ -1,7 +1,7 @@
 'use strict';
 
-mainAngularModule.controller('DialogInsertSnippetController',['$scope','myService','$mdDialog',
-    function($scope,myService,$mdDialog){
+mainAngularModule.controller('DialogInsertSnippetController',['$scope','myService','$mdDialog','ChatDataFactory','BACKEND_BASE_URL',
+    function($scope,myService,$mdDialog, ChatDataFactory, BACKEND_BASE_URL){
 
     $scope.sendSnippet = function () {
         var code = document.getElementById('snippetCode').value;
@@ -23,8 +23,8 @@ mainAngularModule.controller('DialogInsertSnippetController',['$scope','myServic
         if (!code || code === '') {
             return;
         }
-
-        stompClient.send(BACKEND_BASE_URL + '/c/' + chatType + '/' + subject_id, {}, params.toString());
+        if (ChatDataFactory.stompClient != null)
+            ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatType + '/' + subject_id, {}, params.toString());
 
         $mdDialog.cancel();
     };

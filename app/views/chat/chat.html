@@ -27,12 +27,14 @@
                         </tr>
 
                         <tr>
-                            <td class="messaggio_out">
+                            <td ng-if="message.type == 'MESSAGE'" class="messaggio_out">
                                 {{ message.text }}
-
+                            </td>
+                            <td ng-if="message.type == 'SNIPPET'" class="messaggio_out">
                                 <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)" style="vertical-align: center;">Snippet</button>
-
-
+                            </td>
+                            <td ng-if="message.type == 'FILE'" class="messaggio_out">
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)" style="vertical-align: center;">{{ message.text }}</button>
                             </td>
                         </tr>
 

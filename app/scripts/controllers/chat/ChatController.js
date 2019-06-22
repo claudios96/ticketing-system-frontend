@@ -14,7 +14,7 @@ mainAngularModule
 
             var ctrl = this;
             var chatData;
-            var stompClient = null;
+            //var stompClient = null;
             ctrl.messages = [];
 
             var websocketPath = BACKEND_BASE_URL;
@@ -28,7 +28,7 @@ mainAngularModule
                         ctrl.messages = response.messages;
                         ctrl.id = response.id;
 
-                    }, function (error) {
+                    }, function () {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
                     });
             }
@@ -38,11 +38,11 @@ mainAngularModule
                 var socket;
 
                 socket = new SockJS(websocketPath + '/chat-websocket');
-                stompClient = Stomp.over(socket);
+                ChatDataFactory.stompClient = Stomp.over(socket);
 
-                stompClient.connect({}, function(frame) {
+                ChatDataFactory.stompClient.connect({}, function(frame) {
                     console.log('DEBUG: Connected: ' + frame);
-                    stompClient.subscribe('/t/' + chatData.type + '/' + chatData.subject_id, function(response) {
+                    ChatDataFactory.stompClient.subscribe('/t/' + chatData.type + '/' + chatData.subject_id, function(response) {
                         ctrl.messages.push(JSON.parse(response.body));
                         $scope.$apply();
                     });
@@ -56,7 +56,7 @@ mainAngularModule
                 ctrl.type = $stateParams.chatType;
 
 
-                console.log("ChatController", "init()")
+                console.log("ChatController", "init()");
 
 
                 if (ctrl.subject_id != null) {
@@ -84,13 +84,13 @@ mainAngularModule
                     return;
                 }
 
-                console.log("ChatController", "send()")
-                console.log("user_id", ctrl.userInfo.userId)
-                console.log("text", ctrl.messageContent)
-                console.log("chat_id", ctrl.id)
+                console.log("ChatController", "send()");
+                console.log("user_id", ctrl.userInfo.userId);
+                console.log("text", ctrl.messageContent);
+                console.log("chat_id", ctrl.id);
 
 
-                stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
+                ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
 /*
                 ChatDataFactory.InsertMsg(Number(ctrl.userInfo.userId), String(ctrl.messageContent), Number(ctrl.id),
                     function (response) {
@@ -141,10 +141,12 @@ mainAngularModule
             };
 
 
-            $scope.showDialogSnippetDetail = function(snippetName) {
+            $scope.showDialogSnippetDetail = function(text) {
                 myService.dataObj = {
-                    'snippetName': snippetName
+                    'snippetText': text
                 };
+
+                console.log('snippet:', text)
 
                 $mdDialog.show({
                     controller: 'DialogShowSnippetController',
@@ -153,7 +155,7 @@ mainAngularModule
                     clickOutsideToClose: true
 
                 });
-            }
+            };
 
             function CheckIfChatExistsFn(ticketID) {
                 console.log('CheckIfChatExists chat, ticketID: ', ticketID);
@@ -189,38 +191,15 @@ mainAngularModule
             };
 
 
-            /**
-             * @ngdoc               function
-             * @name                upload
-             * @description         Rest Service to POST the uploaded file.
-             *
-             * @param file  the file to be saved
-             */
-
             function uploadFileFn(filename, file) {
 
                 console.log('uploadFn()', file);
 
-              /*  var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('FILE')];
-                TODO togliere commento
-
-                stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
-                */
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(filename), String('FILE')];
 
 
+                ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
 
-
-
-/*
-                ChatDataFactory.InsertMsg(ctrl.userInfo.userId, filename, ctrl.id, "FILE",
-                    function (response) {
-                        console.log(response);
-                        ctrl.messages.push(response);
-
-                    }, function (response) {
-                        //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura del messaggio"})
-                    });
-*/
 
                 ChatDataFactory.UploadFile( file, ctrl.id,  filename,
                     function (response) {
@@ -228,6 +207,7 @@ mainAngularModule
 
                         window.alert('file uploaded');
 
+                        // TODO : remove   usato per testing
                         //getFileFn(ctrl.id, filename);
 
                         //$state.reload();
@@ -236,29 +216,25 @@ mainAngularModule
                         //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
                     });
 
-                // TODO : remove   usato per testing
-                ChatDataFactory.GetFile(ctrl.id, filename, function (response) {
-                    console.log('---->',response);
-
-                    //getFileFn(ctrl.id, filename);
-
-                    //$state.reload();
-
-                }, function () {
-                    //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
-                });
-
-
-
             }
 
             function getFileFn(chatId, filename) {
 
                 ChatDataFactory.GetFile(chatId, filename,
                     function (response) {
-                        console.log(response);
 
-                        console.log('getFileFn()', response);
+                        console.log('file received -->',response);
+
+                        postBase64(filename, response).then(result => {
+                            // Append the <a/> tag and remove it after automatic click for the download
+                            document.body.appendChild(result);
+                            result.click();
+                            document.body.removeChild(result);
+                        });
+
+                        console.log('file downloaded');
+
+                        //$state.reload();
 
                     }, function (response) {
                         //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel caricamento del file"})
@@ -267,11 +243,46 @@ mainAngularModule
             }
 
 
+            function  postBase64(filename, file) {
+                return new Promise((resolve, reject) => {
+
+                    //  Variables
+                    var byte;
+                    var link;
+
+                    //  If the file is not base64, reject.
+                    if (file.split(',')[0].indexOf('base64') < 0)
+                        reject('rejected', "Image not found");
+                    else {
+                        //  file data
+                        byte = atob(file.split(',')[1]);
+
+                        //  Write the bytes of the string to a typed array
+                        var ia = new Uint8Array(byte.length);
+                        for (var i = 0; i < byte.length; i++) {
+                            ia[i] = byte.charCodeAt(i);
+                        }
+
+                        //  Generate a temp <a/> tag for the download
+                        link = document.createElement("a");
+                        link.href = file;
+
+                        //  Set the visibility
+                        link.style = "visibility:hidden";
+
+                        //  Set the name of the file to download
+                        link.download = filename;
+                        resolve(link);
+                    }
+                })
+            }
+
+
             ctrl.CheckIfChatExists = CheckIfChatExistsFn;
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
             ctrl.uploadFile = uploadFileFn;
-            ctrl.getFile = getFileFn();
+            ctrl.getFile = getFileFn;
 
             init();
 
