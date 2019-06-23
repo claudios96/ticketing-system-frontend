@@ -42,10 +42,12 @@ mainAngularModule
 
                 ChatDataFactory.stompClient.connect({}, function(frame) {
                     console.log('DEBUG: Connected: ' + frame);
-                    ChatDataFactory.stompClient.subscribe('/t/' + chatData.type + '/' + chatData.subject_id, function(response) {
-                        ctrl.messages.push(JSON.parse(response.body));
-                        $scope.$apply();
-                    });
+                    setTimeout(function() {
+                        ChatDataFactory.stompClient.subscribe('/t/' + chatData.type + '/' + chatData.subject_id, function (response) {
+                            ctrl.messages.push(JSON.parse(response.body));
+                            $scope.$apply();
+                        });
+                    }, 1000);
                 });
             }
 
@@ -244,7 +246,7 @@ mainAngularModule
 
                         console.log('file downloaded');
 
-                        //$state.reload();
+                        $state.reload();
 
                     }, function (response) {
                         //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel caricamento del file"})

@@ -114,9 +114,9 @@ mainAngularModule
                     url: _endPointJSON + 'uploadFile',
                     params: {
                         'chat_id': chatId,
-                        'filename': filename,
-                        'data': data
-                    }
+                        'filename': filename
+                    },
+                    data : data
                 })
                     .then(function (response) {
                             console.log(response);
