@@ -118,7 +118,17 @@ mainAngularModule
                 var ticketID = id.substr(pos+4, id.length);
                 console.log('Visualizza il dettaglio del ticket ',ticketID);
 
-                $state.go('ticket.detail', {'ticketID': ticketID});
+                myService.dataObj = {
+                    'ticketID': ticketID
+                };
+
+                $mdDialog.show({
+                    controller: 'DialogTicketDetailController',
+                    controllerAs: 'ctrl',
+                    templateUrl: 'views/chat/dialogTicketDetail.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+                });
 
             }
 

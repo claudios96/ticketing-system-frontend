@@ -1,17 +1,17 @@
-<md-dialog aria-label="Details ticket" class="snippetDialog">
-    <form>
+<md-dialog aria-label="Details ticket" class="viewDialog">
 
-        <div>
 
-        <table width="100%">
+
+        <table class="viewTable">
 
             <tr>
-                <td colspan="2" width="100%">
-                    <textarea class="snippetTextArea" id="snippetCode">Inserisci codice...</textarea>
+                <td colspan="2">
+                    <textarea class="snippetTextArea" id="snippetCode"></textarea>
+
                 </td>
             </tr>
 
-            <tr>
+           <tr>
                 <td width="50%">
                     <button id="cancel" type="submit" class="btn btn-primary snippetButton" ng-click="cancelSnippet()">Annulla</button>
                 </td>
@@ -22,8 +22,7 @@
             </tr>
 
         </table>
-        </div>
 
 
-    </form>
+
 </md-dialog>

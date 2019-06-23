@@ -52,7 +52,7 @@ mainAngularModule.config(['$stateProvider',
                 controller: 'TicketListCustomerCtrl',
                 controllerAs: 'ctrl',
             })
-            .state('ticket.detail', {
+            /*.state('ticket.detail', {
                 //url: '/{ticketID: int}/ticket-detail',
                 url: '/ticket-detail',
                 templateUrl: 'views/ticket/ticket-detail.html',
@@ -63,5 +63,6 @@ mainAngularModule.config(['$stateProvider',
                     assistantID: null
                 }
 
-            });
+            })*/
+            ;
     }]);
