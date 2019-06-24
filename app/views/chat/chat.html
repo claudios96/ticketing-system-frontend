@@ -62,10 +62,14 @@
 
                         <!-- se messaggio di notifica , mostro bottone dettaglio ticket-->
                         <tr>
-                            <td class="messaggio_in">
+                            <td ng-if="message.type == 'MESSAGE'" class="messaggio_in">
                                 {{ message.text }}
-                                <button ng-if="message.username == 'System'" type="submit" class="btn_ticketDetail" ng-click="ctrl.showTicketDetail(message.text)">Visualizza dettaglio</button>
-                                <!--<button  type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>-->
+                            </td>
+                            <td ng-if="message.type == 'SNIPPET'" class="messaggio_in">
+                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
+                            </td>
+                            <td ng-if="message.type == 'FILE'" class="messaggio_in">
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text }}</button>
                             </td>
                         </tr>
                         <tr><td height="20px"></td></tr>
