@@ -219,11 +219,6 @@ mainAngularModule
 
                         window.alert('file uploaded');
 
-                        // TODO : remove   usato per testing
-                        //getFileFn(ctrl.id, filename);
-
-                        //$state.reload();
-
                     }, function () {
                         //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
                     });
@@ -237,12 +232,7 @@ mainAngularModule
 
                         console.log('file received -->',response);
 
-                        postBase64(filename, response).then(result => {
-                            // Append the <a/> tag and remove it after automatic click for the download
-                            document.body.appendChild(result);
-                            result.click();
-                            document.body.removeChild(result);
-                        });
+                        downloadFile(response, filename);
 
                         console.log('file downloaded');
 
@@ -255,38 +245,18 @@ mainAngularModule
             }
 
 
-            function  postBase64(filename, file) {
-                return new Promise((resolve, reject) => {
-
-                    //  Variables
-                    var byte;
-                    var link;
-
-                    //  If the file is not base64, reject.
-                    if (file.split(',')[0].indexOf('base64') < 0)
-                        reject('rejected', "Image not found");
-                    else {
-                        //  file data
-                        byte = atob(file.split(',')[1]);
-
-                        //  Write the bytes of the string to a typed array
-                        var ia = new Uint8Array(byte.length);
-                        for (var i = 0; i < byte.length; i++) {
-                            ia[i] = byte.charCodeAt(i);
+            function downloadFile(url, filename) {
+                fetch(url).then(function(t) {
+                    return t.blob().then((b)=>{
+                            var a = document.createElement("a");
+                            a.href = URL.createObjectURL(b);
+                            a.setAttribute("download", filename);
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
                         }
-
-                        //  Generate a temp <a/> tag for the download
-                        link = document.createElement("a");
-                        link.href = file;
-
-                        //  Set the visibility
-                        link.style = "visibility:hidden";
-
-                        //  Set the name of the file to download
-                        link.download = filename;
-                        resolve(link);
-                    }
-                })
+                    );
+                });
             }
 
 
