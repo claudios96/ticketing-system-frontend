@@ -148,6 +148,10 @@ body {
     transition: all .5s;
 }
 
+.btn-primary{
+    vertical-align: center;
+}
+
 .btn-primary.btn-outline {
     color: #428bca;
 }
@@ -381,93 +385,6 @@ table.dataTable thead .sorting:after {
 
 
 /*
-CHAT CSS
-*/
-
-.messaggio_out {
-    background: #25D366 none repeat scroll 0 0;
-    border-radius: 3px;
-    color: white;
-    font-size: 14px;
-    margin: 0;
-    padding: 5px 10px 5px 12px;
-    word-break: break-word;
-    /*word-break: break-all;*/
-    float: right;
-}
-
-.messaggio_in {
-    background: #05728f none repeat scroll 0 0;
-    border-radius: 3px;
-    color: white;
-    font-size: 14px;
-    margin: 0;
-    padding: 5px 10px 5px 12px;
-    word-break: break-word;
-    /*word-break: break-all;*/
-    float:left;
-}
-
-.colonna {
-    float: right;
-}
-
-.btn-chat {
-    margin-top: 15px;
-}
-
-.btn_snippet {
-    /*position: relative;*/
-    background: #428bca;
-    border: #0C789E;
-    border-radius: 8px;
-    padding: 3px 10px;
-    font-size: 16px;
-    cursor: pointer;
-    display: inline-block;
-    transition-duration: 0.4s;
-    margin: auto;
-    margin-left: 25px;
-}
-.btn_snippet:hover {
-    background: dodgerblue;
-    color: #ffffff;
-}
-
-/*
-CHAT CSS - SNIPPET
- */
-.viewDialog {
-    min-width: 90%;
-}
-
-.viewTable {
-    width:100%;
-    height: 100%;
-}
-.viewButton {
-    margin-bottom: 5%;
-}
-
-.snippetTextArea {
-    width: 100%;
-    height: 250px;
-    resize: vertical;
-
-
-}
-
-.snippetButton {
-    width: 80%;
-    height: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 3%;
-    margin-top: 3%;
-
-}
-
-/*
 FOOTER
 */
 
@@ -506,10 +423,62 @@ FOOTER
     color: dodgerblue;
 }
 
+
 /*
-BOTTONE DETTAGLIO TICKET - CHAT PRODOTTO
- */
-.btn_ticketDetail {
+CHAT CSS
+*/
+
+.table_chat{
+    padding-top: 2%;
+}
+
+.textarea_chat{
+    width:90%;
+    height:50px;
+}
+
+.messaggio_out {
+    background: #25D366 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    word-break: break-word;
+    float: right;
+    white-space: pre-line;
+}
+
+.messaggio_out:first-line {
+    line-height: 0px !important;
+}
+
+.messaggio_in:first-line {
+    line-height: 0px !important;
+}
+
+.messaggio_in {
+    background: #05728f none repeat scroll 0 0;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 10px 0px 12px;
+    word-break: break-word;
+    float:left;
+    white-space: pre-line;
+}
+
+.colonna {
+    float: right;
+}
+
+.btn-chat {
+    margin-top: 15px;
+    margin-bottom: 1.5%;
+}
+
+.btn_snippet {
     /*position: relative;*/
     background: #428bca;
     border: #0C789E;
@@ -519,9 +488,71 @@ BOTTONE DETTAGLIO TICKET - CHAT PRODOTTO
     cursor: pointer;
     display: inline-block;
     transition-duration: 0.4s;
-    margin: auto;
-    margin-left: 25px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    vertical-align: center;
 }
+
+.btn_snippet:hover {
+    background: dodgerblue;
+    color: #ffffff;
+}
+
+/*
+CHAT CSS - SNIPPET
+ */
+
+.viewDialog {
+    min-width: 90%;
+}
+
+.viewTable {
+    width:100%;
+    height: 100%;
+}
+
+.viewButton {
+    margin-bottom: 5%;
+}
+
+.snippetDialog {
+    width: 80%;
+    height: 70%;
+}
+
+.snippetTextArea {
+    width: 100%;
+    height: 250px;
+    resize: vertical;
+}
+
+.snippetButton {
+    width: 80%;
+    height: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+/*
+BOTTONE DETTAGLIO TICKET - CHAT PRODOTTO
+ */
+
+.btn_ticketDetail {
+    background: #428bca;
+    border: #0C789E;
+    border-radius: 8px;
+    padding: 3px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    transition-duration: 0.4s;
+    margin-top: 5%;
+    /*margin-bottom: 5%;*/
+    vertical-align: center;
+}
+
 .btn_ticketDetail:hover {
     background: dodgerblue;
     color: #ffffff;
@@ -530,13 +561,16 @@ BOTTONE DETTAGLIO TICKET - CHAT PRODOTTO
 /*
 VIEW DETTAGLIO TICKET
  */
+
 .dettaglioTicketInterlinea {
     height: 15px;
 }
+
 .dettaglioTicketRiga {
     background: lightgrey;
     font-size: 16px;
 }
+
 .dettaglioTicketColonna {
     float: right;
 }

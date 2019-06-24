@@ -1,3 +1,12 @@
+<!--
+<script>
+    window.onload = function() {
+        var elmnt = document.getElementById("textarea1");
+        elmnt.scrollIntoView({behavior: "auto", block: "start"});
+    };
+</script>
+-->
+
 <div>
     <div class="row">
         <div class="col-lg-12" align="center">
@@ -12,7 +21,7 @@
 
 
     <ul>
-        <table ng-repeat="message in ctrl.messages" width="100%" style="padding-top: 2%">
+        <table ng-repeat="message in ctrl.messages" width="100%" class="table_chat" id="table_chat_id" >
             <tr>
 
                 <td>
@@ -31,10 +40,10 @@
                                 {{ message.text }}
                             </td>
                             <td ng-if="message.type == 'SNIPPET'" class="messaggio_out">
-                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)" style="vertical-align: center;">Snippet</button>
+                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>
                             <td ng-if="message.type == 'FILE'" class="messaggio_out">
-                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)" style="vertical-align: center;">{{ message.text }}</button>
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text }}</button>
                             </td>
                         </tr>
 
@@ -55,23 +64,13 @@
                         <tr>
                             <td class="messaggio_in">
                                 {{ message.text }}
-                                <button ng-if="message.username == 'System'" type="submit" class="btn_ticketDetail" ng-click="ctrl.showTicketDetail(message.text)" style="vertical-align: center;">Visualizza dettaglio</button>
-
-                                <!-- ng-if="message.type == 'SNIPPET'" -->
-                                <button  type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)" style="vertical-align: center;">Snippet</button>
-
-
-
+                                <button ng-if="message.username == 'System'" type="submit" class="btn_ticketDetail" ng-click="ctrl.showTicketDetail(message.text)">Visualizza dettaglio</button>
+                                <button  type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>
                         </tr>
-
                         <tr><td height="20px"></td></tr>
                     </table>
-
-
                 </td>
-
-
             </tr>
         </table>
     </ul>
@@ -79,16 +78,13 @@
 
     <div class="col-lg-12" align="center" ng-controller="ChatCtrl" style="padding-bottom: 10%">
         <form>
-            <input ng-model="ctrl.messageContent" type="text" style="width:90%; height:50px" placeholder="Scrivi un messaggio..."/>
+            <textarea id="textarea1" ng-model="ctrl.messageContent" type="text" class="textarea_chat" placeholder="Scrivi un messaggio..." autofocus></textarea>
 
-            <!--<textarea ng-model="ctrl.messageContent" style="width:90%; height:150px" placeholder="Scrivi un messaggio..." autofocus></textarea>-->
-
-            <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()" style="vertical-align: center;">Invia</button>
+            <button type="submit" class="btn btn-primary" ng-click="ctrl.sendMessage()" style="margin-top: 0.6%">Invia</button>
 
             <button ng-click="showDialogInsertSnippet()" class="btn btn-primary btn-chat">Invia Snippet</button>
 
-            <input type="file"
-                   custom-on-change="selectedFile"/>
+            <input id="file_button" type="file" custom-on-change="selectedFile"/>
             <!--<button  class="btn btn-primary btn-lg btn-block" ng-click="ctrl.uploadFile()">Upload</button>-->
 
         </form>
