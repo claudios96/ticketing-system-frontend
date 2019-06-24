@@ -435,7 +435,7 @@ CHAT CSS
 .textarea_chat{
     width:90%;
     height:50px;
-    resize: vertical; // aggiunta luigi
+    resize: vertical; /* aggiunta luigi */
 }
 
 .messaggio_out {
