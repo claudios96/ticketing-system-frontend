@@ -62,9 +62,15 @@
 
                         <!-- se messaggio di notifica , mostro bottone dettaglio ticket-->
                         <tr>
-                            <td ng-if="message.type == 'MESSAGE'" class="messaggio_in">
+                            <td ng-if="message.type == 'MESSAGE' && message.username != 'System'" class="messaggio_in">
                                 {{ message.text }}
                             </td>
+
+                            <td ng-if="message.type == 'MESSAGE' && message.username == 'System'" class="messaggio_in">
+                                {{message.text}} <button type="submit" class="btn_snippet" ng-click="ctrl.showTicketDetail(message.text)">Dettagli</button>
+
+                            </td>
+
                             <td ng-if="message.type == 'SNIPPET'" class="messaggio_in">
                                 <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>

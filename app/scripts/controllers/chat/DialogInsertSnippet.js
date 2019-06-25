@@ -17,7 +17,7 @@ mainAngularModule.controller('DialogInsertSnippetController',['$scope','myServic
 
         var snippetName = '<<<SNIPPET>>>' + chatID + userID;
 
-        var params = [Number(chatID), Number(userID), String(code), String('SNIPPET')];
+        var params = [Number(chatID), Number(userID), String('SNIPPET'), String(code).replace(',', '00100')];
 
         // Don't send an empty snippet
         if (!code || code === '') {
@@ -29,9 +29,9 @@ mainAngularModule.controller('DialogInsertSnippetController',['$scope','myServic
         $mdDialog.cancel();
     };
 
-    $scope.cancelSnippet = function() {
-        $mdDialog.cancel();
-    };
+$scope.cancelSnippet = function() {
+    $mdDialog.cancel();
+};
 
 
 }]);
