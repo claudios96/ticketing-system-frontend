@@ -516,6 +516,19 @@ CHAT CSS
     color: #ffffff;
 }
 
+.table_ul{
+    padding-bottom: 13%;
+}
+
+.btn_submit_chat{
+    margin-top: 1.1%;
+}
+
+.btn_file_chat{
+    display: inline;
+    margin-left: 3%;
+}
+
 /*
 CHAT CSS - SNIPPET
  */
