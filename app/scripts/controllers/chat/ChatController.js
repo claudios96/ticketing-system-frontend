@@ -78,7 +78,7 @@ mainAngularModule
 
 
             function  sendMessageFn() {
-                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(ctrl.messageContent), String('MESSAGE')];
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String('MESSAGE'), String(ctrl.messageContent)];
 
                 console.log('insert message');
                 // Don't send an empty message
@@ -207,7 +207,7 @@ mainAngularModule
 
                 console.log('uploadFn()', file);
 
-                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String(filename), String('FILE')];
+                var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String('FILE'), String(filename)];
 
 
                 ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
