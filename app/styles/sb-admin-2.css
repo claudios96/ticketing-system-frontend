@@ -395,8 +395,11 @@ FOOTER
     clear: both;
     position: fixed;
     background-color: #f8f8f8;
-    padding-top: 9px;
+    padding-top: 5px;
     padding-right: 2%;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: dodgerblue;
 }
 
 .btn_footer {
@@ -435,7 +438,21 @@ CHAT CSS
 .textarea_chat{
     width:90%;
     height:50px;
+    margin-right: 1%;
+    margin-top: 0.5%;
     resize: vertical; /* aggiunta luigi */
+}
+
+.message-box{
+    border-top: 1px solid #E0E0E0;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 3.8%;
+    width: 83.5%;
+    float: right;
+    height: 120px;
+    background: #f8f8f8;
 }
 
 .messaggio_out {
@@ -529,11 +546,9 @@ CHAT CSS - SNIPPET
 
 .snippetButton {
     width: 80%;
-    height: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 3%;
-    margin-top: 3%;
+    /*height: 10%;*/
+    padding: 5px 10px;
+    margin: 3% 10%;
 }
 
 /*
