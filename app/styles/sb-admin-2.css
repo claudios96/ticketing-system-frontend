@@ -438,6 +438,8 @@ CHAT CSS
 .textarea_chat{
     width:90%;
     height:50px;
+    min-height: 30px;
+    max-height: 50px;
     margin-right: 1%;
     margin-top: 0.5%;
     resize: vertical; /* aggiunta luigi */
@@ -468,11 +470,11 @@ CHAT CSS
 }
 
 .messaggio_out:first-line {
-    line-height: 0px !important;
+    line-height: 0px;
 }
 
 .messaggio_in:first-line {
-    line-height: 0px !important;
+    line-height: 0px;
 }
 
 .messaggio_in {
@@ -549,6 +551,7 @@ CHAT CSS - SNIPPET
 .snippetDialog {
     width: 80%;
     height: 70%;
+    overflow-x: hidden;
 }
 
 .snippetTextArea {

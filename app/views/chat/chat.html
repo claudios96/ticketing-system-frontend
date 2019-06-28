@@ -56,7 +56,8 @@
                             </td>
 
                             <td ng-if="message.type == 'MESSAGE' && message.username == 'System'" class="messaggio_in">
-                                {{message.text}} <button type="submit" class="btn_snippet" ng-click="ctrl.showTicketDetail(message.text)">Dettagli</button>
+                                {{message.text}}
+                                <button type="submit" class="btn_snippet" ng-click="ctrl.showTicketDetail(message.text)">Dettagli</button>
 
                             </td>
 
