@@ -208,6 +208,11 @@ mainAngularModule
 
                 console.log('uploadFn()', file);
 
+                var d = new Date();
+                var timestamp = d.toISOString();
+                timestamp = timestamp.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
+                filename = timestamp + filename;
+
                 var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String('FILE'), String(filename)];
 
 
@@ -287,4 +292,13 @@ mainAngularModule
                 $anchorScroll();
             }
         };
-    }]);
+    }])
+
+.filter('filename', function() {
+    return function(filename) {
+
+        filename = filename.substring(24);
+
+        return filename;
+    };
+});

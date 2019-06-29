@@ -33,7 +33,7 @@
                                 <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>
                             <td ng-if="message.type == 'FILE'" class="messaggio_out">
-                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text }}</button>
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text | filename}}</button>
                             </td>
                         </tr>
 
@@ -66,7 +66,7 @@
                                 <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>
                             <td ng-if="message.type == 'FILE'" class="messaggio_in">
-                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text }}</button>
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text | filename}}</button>
                             </td>
                         </tr>
                         <tr><td height="20px"></td></tr>
