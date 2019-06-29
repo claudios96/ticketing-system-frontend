@@ -9,8 +9,8 @@
 
 mainAngularModule
     .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
-        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService', 'util',
-        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService, util) {
+        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService', 'util', '$location', '$anchorScroll',
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService, util, $location, $anchorScroll) {
 
             var ctrl = this;
             var chatData;
@@ -31,6 +31,7 @@ mainAngularModule
                     }, function () {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
                     });
+
             }
 
             function connect() {
@@ -107,7 +108,7 @@ mainAngularModule
                 ctrl.messageContent = '';
 
                 //setTimeout(refreshChatFn(chatData), 1000);
-
+                scrollToBottomFn();
             }
 
 
@@ -259,14 +260,20 @@ mainAngularModule
                 });
             }
 
+            function scrollToBottomFn() {
+                console.log('SCROLL');
+                $location.hash('scrollToBottom');
+                $anchorScroll();
+            }
+
 
             ctrl.CheckIfChatExists = CheckIfChatExistsFn;
             ctrl.sendMessage = sendMessageFn;
             ctrl.showTicketDetail = showTicketDetailFn;
             ctrl.uploadFile = uploadFileFn;
             ctrl.getFile = getFileFn;
+            ctrl.scrollToBottom = scrollToBottomFn;
 
             init();
 
         }]);
-
