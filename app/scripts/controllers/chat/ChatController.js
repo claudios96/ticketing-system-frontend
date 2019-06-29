@@ -276,4 +276,15 @@ mainAngularModule
 
             init();
 
-        }]);
+        }])
+    .directive('myPostRepeatDirective', ['$location', '$anchorScroll', function($location,$anchorScroll) {
+        return function(scope, element, attrs) {
+            console.log('DIRETTIVA');
+            if (scope.$last){
+                // iteration is complete, do whatever post-processing
+                // is necessary
+                $location.hash('scrollToBottom');
+                $anchorScroll();
+            }
+        };
+    }]);
