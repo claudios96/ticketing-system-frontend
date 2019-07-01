@@ -32,8 +32,7 @@ mainAngularModule
                     method: 'GET',
                     url: _endPointJSON + "msgs",
                     params: {'type' : type,
-                            'subject_id' : id,
-                            'username' : username}
+                            'subject_id' : id}
                 })
                     .then(function (response) {
                             console.log(response);
