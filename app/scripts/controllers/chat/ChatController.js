@@ -9,8 +9,9 @@
 
 mainAngularModule
     .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
-        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService', 'util', '$location', '$anchorScroll',
-        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder, AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService, util, $location, $anchorScroll) {
+        'DTColumnDefBuilder', 'AclService', 'httpService', 'BACKEND_BASE_URL', '$mdDialog', 'myService', 'util', '$location', '$anchorScroll', 'ToasterNotifierHandler',
+        function ($scope, $state, $stateParams, AuthFactory, ChatDataFactory, ErrorStateRedirector, DTOptionsBuilder, DTColumnDefBuilder,
+                  AclService, httpService, BACKEND_BASE_URL, $mdDialog, myService, util, $location, $anchorScroll, ToasterNotifierHandler) {
 
             var ctrl = this;
             var chatData;
@@ -27,6 +28,9 @@ mainAngularModule
 
                         ctrl.messages = response.messages;
                         ctrl.id = response.id;
+
+                        setTimeout(scrollToBottomFn(), 500);
+
 
                     }, function () {
                         ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel recupero dei messaggi"});
@@ -94,16 +98,7 @@ mainAngularModule
 
 
                 ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
-/*
-                ChatDataFactory.InsertMsg(Number(ctrl.userInfo.userId), String(ctrl.messageContent), Number(ctrl.id),
-                    function (response) {
-                        console.log(response);
-                        ctrl.messages.push(response);
 
-                    }, function (response) {
-                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nella scrittura del messaggio"})
-                    });
-*/
                 // Reset the messageContent input
                 ctrl.messageContent = '';
 
@@ -200,6 +195,8 @@ mainAngularModule
                     //file = result;
                     console.log('event', event);
                 uploadFileFn(event.target.files[0].name, result);
+                document.getElementById("file_button").value = "";
+                scrollToBottomFn();
             })
             };
 
@@ -223,10 +220,10 @@ mainAngularModule
                     function (response) {
                         console.log(response);
 
-                        window.alert('file uploaded');
+                        ToasterNotifierHandler.showSuccessToast('File caricato con successo');
 
                     }, function () {
-                        //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
+                        ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nell'upload del file"})
                     });
 
             }
@@ -282,6 +279,7 @@ mainAngularModule
             init();
 
         }])
+    /*
     .directive('myPostRepeatDirective', ['$location', '$anchorScroll', function($location,$anchorScroll) {
         return function(scope, element, attrs) {
             console.log('DIRETTIVA');
@@ -293,6 +291,7 @@ mainAngularModule
             }
         };
     }])
+    */
 
 .filter('filename', function() {
     return function(filename) {

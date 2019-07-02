@@ -529,10 +529,15 @@ CHAT CSS
     margin-top: 1.1%;
 }
 
-.btn_file_chat{
-    display: inline;
-    margin-left: 3%;
+.btn_file_chat {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+
 
 /*
 CHAT CSS - SNIPPET
