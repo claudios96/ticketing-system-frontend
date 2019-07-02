@@ -92,6 +92,7 @@ mainAngularModule
                     ctrl.userInfo = AuthFactory.getAuthInfo();
 
                     resetFieldsFn();
+                    ctrl.currentTicket.slackable = false;
                     //populateProductSoftwareListFn();
 
                     // Popola costanti per le ng-option
