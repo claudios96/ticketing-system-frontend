@@ -1,22 +1,15 @@
-<md-dialog aria-label="Details ticket" class="viewDialog">
-        <div>
+<md-dialog aria-label="Details ticket">
 
-            <table width="100%">
+        <table width="100%" height="90%">
 
-                <tr>
-                    <td width="100%" height="100%">
-                        <div  class="snippetTextArea" hljs source="snippetText"></div>
-                    </td>
-                </tr>
+            <tr>
+                <td width="100%" height="100%">
+                    <div  class="snippetDisplayArea" hljs source="snippetText"></div>
+                </td>
+            </tr>
 
-                <tr>
-                    <td width="100%">
-                        <button id="cancel" type="submit" class="btn btn-primary snippetButton" ng-click="cancelSnippet()">Annulla</button>
-                    </td>
-                </tr>
+        </table>
 
-            </table>
-        </div>
-
+        <button id="cancel" type="submit" class="btn btn-primary snippetCancelButton" ng-click="cancelSnippet()">Annulla</button>
 
 </md-dialog>
