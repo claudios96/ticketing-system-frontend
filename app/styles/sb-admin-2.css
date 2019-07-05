@@ -438,11 +438,9 @@ CHAT CSS
 .textarea_chat{
     width:90%;
     height:50px;
-    min-height: 30px;
-    max-height: 50px;
+    resize: none;
     margin-right: 1%;
     margin-top: 0.5%;
-    resize: vertical; /* aggiunta luigi */
 }
 
 .message-box{
@@ -470,14 +468,20 @@ CHAT CSS
     word-break: break-word;
     float: right;
     white-space: pre-line;
+    text-align: right;
+    width: fit-content;
 }
 
-.messaggio_out:first-line {
+.messaggio_out_author, .messaggio_out_time{
+    float: right;
+}
+
+.messaggio_out:first-line, .messaggio_in:first-line {
     line-height: 0px;
 }
 
-.messaggio_in:first-line {
-    line-height: 0px;
+.messaggio_in_author, .messaggio_in_time {
+    float: left;
 }
 
 .messaggio_in {
@@ -502,7 +506,6 @@ CHAT CSS
 }
 
 .btn_snippet {
-    /*position: relative;*/
     background: #428bca;
     border: #0C789E;
     border-radius: 8px;
