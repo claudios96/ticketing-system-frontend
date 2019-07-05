@@ -97,7 +97,7 @@ mainAngularModule
                 console.log("chat_id", ctrl.id);
 
 
-                ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
+                ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, JSON.stringify(params));
 
                 // Reset the messageContent input
                 ctrl.messageContent = '';
@@ -213,7 +213,7 @@ mainAngularModule
                 var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String('FILE'), String(filename)];
 
 
-                ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, params.toString());
+                ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatData.type + '/' + chatData.subject_id, {}, JSON.stringify(params));
 
 
                 ChatDataFactory.UploadFile( file, ctrl.id,  filename,

@@ -17,14 +17,14 @@ mainAngularModule.controller('DialogInsertSnippetController',['$scope','myServic
 
         var snippetName = '<<<SNIPPET>>>' + chatID + userID;
 
-        var params = [Number(chatID), Number(userID), String('SNIPPET'), String(code).replace(',', '00100')];
+        var params = [Number(chatID), Number(userID), String('SNIPPET'), String(code)];
 
         // Don't send an empty snippet
         if (!code || code === '') {
             return;
         }
         if (ChatDataFactory.stompClient != null)
-            ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatType + '/' + subject_id, {}, params.toString());
+            ChatDataFactory.stompClient.send(BACKEND_BASE_URL + '/c/' + chatType + '/' + subject_id, {}, JSON.stringify(params));
 
         $mdDialog.cancel();
     };
