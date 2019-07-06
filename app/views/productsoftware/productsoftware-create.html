@@ -65,10 +65,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group"
-                                     ng-class="{'has-success': ctrl.currentSoftwareProduct.categories}">
+                                <div class="form-group" ng-class="{'has-success': ctrl.currentSoftwareProduct.categories}">
                                     <label>Categorie ticket</label>
-                                    <tags-input  ng-model="ctrl.currentSoftwareProduct.categories" style="margin-left: 10px;min-width: 680px;min-height: 41px"></tags-input>
+                                    <input class="form-control" ng-model="ctrl.currentSoftwareProduct.categories" placeholder="Add a tag">
                                 </div>
                             </div>
                         </form>

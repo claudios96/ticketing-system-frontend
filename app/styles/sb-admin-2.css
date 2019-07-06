@@ -3,6 +3,7 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 body {
     background-color: #f8f8f8;
@@ -14,16 +15,17 @@ body {
 
 #page-wrapper {
     padding: 0 15px;
-    min-height: 1200px !important;
     background-color: #fff;
+    margin-bottom: 100%;
 }
 
 @media (min-width: 768px) {
     #page-wrapper {
         position: inherit;
         margin: 0 0 0 250px;
-        padding: 0 30px;
         border-left: 1px solid #e7e7e7;
+        padding: 4% 30px 5%;
+        overflow-y:hidden;
     }
 }
 
@@ -430,8 +432,7 @@ FOOTER
 /*
 CHAT CSS
 */
-
-.table_chat{
+.chat_class{
     padding-top: 2%;
 }
 
@@ -441,6 +442,7 @@ CHAT CSS
     resize: none;
     margin-right: 1%;
     margin-top: 0.5%;
+    display: inline;
 }
 
 .message-box{
@@ -497,6 +499,10 @@ CHAT CSS
 }
 
 .colonna {
+    font-family: 'Muli', sans-serif;
+}
+
+.colonna_right{
     float: right;
 }
 
@@ -525,7 +531,7 @@ CHAT CSS
 }
 
 .table_ul{
-    padding-bottom: 13%;
+    margin-bottom: 8%;
 }
 
 .btn_submit_chat{
@@ -629,4 +635,11 @@ VIEW DETTAGLIO TICKET
 
 .dettaglioTicketColonna {
     float: right;
+}
+
+
+/* NUOVE AGGIUNTE */
+
+.padding-12{
+    padding-bottom: 12%;
 }
