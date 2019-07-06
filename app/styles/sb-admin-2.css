@@ -438,11 +438,9 @@ CHAT CSS
 .textarea_chat{
     width:90%;
     height:50px;
-    min-height: 30px;
-    max-height: 50px;
+    resize: none;
     margin-right: 1%;
     margin-top: 0.5%;
-    resize: vertical; /* aggiunta luigi */
 }
 
 .message-box{
@@ -470,14 +468,20 @@ CHAT CSS
     word-break: break-word;
     float: right;
     white-space: pre-line;
+    text-align: right;
+    width: fit-content;
 }
 
-.messaggio_out:first-line {
+.messaggio_out_author, .messaggio_out_time{
+    float: right;
+}
+
+.messaggio_out:first-line, .messaggio_in:first-line {
     line-height: 0px;
 }
 
-.messaggio_in:first-line {
-    line-height: 0px;
+.messaggio_in_author, .messaggio_in_time {
+    float: left;
 }
 
 .messaggio_in {
@@ -502,7 +506,6 @@ CHAT CSS
 }
 
 .btn_snippet {
-    /*position: relative;*/
     background: #428bca;
     border: #0C789E;
     border-radius: 8px;
@@ -529,10 +532,15 @@ CHAT CSS
     margin-top: 1.1%;
 }
 
-.btn_file_chat{
-    display: inline;
-    margin-left: 3%;
+.btn_file_chat {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+
 
 /*
 CHAT CSS - SNIPPET
@@ -563,11 +571,24 @@ CHAT CSS - SNIPPET
     resize: vertical;
 }
 
+.snippetDisplayArea {
+    width: 100%;
+    height: 40%;
+    resize: vertical;
+}
+
 .snippetButton {
     width: 80%;
     /*height: 10%;*/
     padding: 5px 10px;
     margin: 3% 10%;
+}
+
+.snippetCancelButton {
+    /*margin: 0% 30%;*/
+    width: fit-content;
+    margin: auto;
+    display: block;
 }
 
 /*

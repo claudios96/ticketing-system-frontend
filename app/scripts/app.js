@@ -16,6 +16,6 @@ var mainAngularModule = angular
         'ngMaterial', 'ngAnimate',
         'ngTagsInput',
 
-        'drag-and-drop'
-
+        'drag-and-drop',
+        'hljs'
     ]);
