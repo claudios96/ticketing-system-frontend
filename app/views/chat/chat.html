@@ -16,20 +16,17 @@
                 <td>
                     <table ng-if="message.username == ctrl.userInfo.username" width="100%">
                         <tr>
-                            <td ng-if="message.type == 'MESSAGE'" class="messaggio_out">
-                                <div class="colonna">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-
-                                {{ message.text }}
+                            <td ng-if="message.type == 'MESSAGE'" class="messaggio messaggio_out">
+                                <div class="colonna messaggio_info">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr class="out"></div>
+                                <div class="colonna">{{ message.text }}</div>
                             </td>
-                            <td ng-if="message.type == 'SNIPPET'" class="messaggio_out">
-                                {{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}
-
-                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
+                            <td ng-if="message.type == 'SNIPPET'" class="messaggio messaggio_out">
+                                <div class="colonna messaggio_info">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr class="out"></div>
+                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet btn_out colonna" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>
-                            <td ng-if="message.type == 'FILE'" class="messaggio_out">
-                                {{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}
-
-                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text | filename}}</button>
+                            <td ng-if="message.type == 'FILE'" class="messaggio messaggio_out">
+                                <div class="colonna messaggio_info">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr class="out"></div>
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet btn_out colonna" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text | filename}}</button>
                             </td>
                         </tr>
                         <tr><td height="20px"></td></tr>
@@ -39,33 +36,26 @@
 
                         <!-- se messaggio di notifica , mostro bottone dettaglio ticket-->
                         <tr>
-                            <td ng-if="message.type == 'MESSAGE' && message.username != 'System'" class="messaggio_in">
-                                <div ng-if="message.username != ''" class="colonna">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-                                <div ng-if="message.username == ''" class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-
-                                {{ message.text }}
+                            <td ng-if="message.type == 'MESSAGE' && message.username != 'System'" class="messaggio messaggio_in">
+                                <div class="colonna messaggio_info">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr></div>
+                                <div class="colonna">{{ message.text }}</div>
                             </td>
 
-                            <td ng-if="message.type == 'MESSAGE' && message.username == 'System'" class="messaggio_in">
-                                <div ng-if="message.username != ''" class="colonna">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-                                <div ng-if="message.username == ''" class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-
-                                {{message.text}}
-                                <button type="submit" class="btn_snippet" ng-click="ctrl.showTicketDetail(message.text)">Dettagli</button>
-
+                            <td ng-if="message.type == 'MESSAGE' && message.username == 'System'" class="messaggio messaggio_in">
+                                <div class="colonna messaggio_info">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr></div>
+                                <div class="colonna">{{message.text}}</div>
+                                <button type="submit" class="btn_snippet colonna" ng-click="ctrl.showTicketDetail(message.text)">Dettagli</button>
                             </td>
 
-                            <td ng-if="message.type == 'SNIPPET'" class="messaggio_in">
-                                <div ng-if="message.username != ''" class="colonna">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-                                <div ng-if="message.username == ''" class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-
-                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
+                            <td ng-if="message.type == 'SNIPPET'" class="messaggio messaggio_in">
+                                <div ng-if="message.username != ''" class="colonna messaggio_info">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr></div>
+                                <div ng-if="message.username == ''" class="colonna messaggio_info">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr></div>
+                                <button ng-if="message.type == 'SNIPPET'" type="submit" class="btn_snippet colonna" ng-click="showDialogSnippetDetail(message.text)">Snippet</button>
                             </td>
-                            <td ng-if="message.type == 'FILE'" class="messaggio_in">
-                                <div ng-if="message.username != ''" class="colonna">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-                                <div ng-if="message.username == ''" class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}</div>
-
-                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text | filename}}</button>
+                            <td ng-if="message.type == 'FILE'" class="messaggio messaggio_in">
+                                <div ng-if="message.username != ''" class="colonna messaggio_info">{{message.completeName}} | {{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr></div>
+                                <div ng-if="message.username == ''" class="colonna">{{ message.timestamp | date:"MM/dd/yyyy 'ore' h:mma" }}<hr></div>
+                                <button ng-if="message.type == 'FILE'" type="submit" class="btn_snippet colonna" ng-click="ctrl.getFile(ctrl.id, message.text)">{{ message.text | filename}}</button>
                             </td>
                         </tr>
                         <tr><td height="20px"></td></tr>

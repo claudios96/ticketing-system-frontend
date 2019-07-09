@@ -51,6 +51,7 @@ mainAngularModule
                         ChatDataFactory.stompClient.subscribe('/t/' + chatData.type + '/' + chatData.subject_id, function (response) {
                             ctrl.messages.push(JSON.parse(response.body));
                             $scope.$apply();
+                            scrollToBottomFn();
                         });
                     }, 1000);
                 });
@@ -103,7 +104,7 @@ mainAngularModule
                 ctrl.messageContent = '';
 
                 //setTimeout(refreshChatFn(chatData), 1000);
-                scrollToBottomFn();
+                //scrollToBottomFn();
             }
 
 

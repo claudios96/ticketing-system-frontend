@@ -460,42 +460,66 @@ CHAT CSS
     background: #f8f8f8;
 }
 
-.messaggio_out {
-    background: #25D366 none repeat scroll 0 0;
-    border-radius: 3px;
-    color: white;
+.messaggio{
+    color: black;
     font-size: 14px;
     margin: 0;
-    padding: 5px 10px 5px 12px;
     word-break: break-word;
-    float: right;
     white-space: pre-line;
-    text-align: right;
-    width: fit-content;
+    clear: both;
 }
 
-.messaggio_out_author, .messaggio_out_time{
+.messaggio_out {
+    background: #0084ff none repeat scroll 0 0;
+    padding: 5px 10px 5px 12px;
     float: right;
+    text-align: right;
+    width: fit-content;
+    border-top-left-radius: 15px;
+    color: white;
+}
+
+.messaggio_info{
+    font-size: 16px;
 }
 
 .messaggio_out:first-line, .messaggio_in:first-line {
     line-height: 0px;
 }
 
-.messaggio_in_author, .messaggio_in_time {
-    float: left;
+.messaggio_in {
+    background: #eee none repeat scroll 0 0;
+    padding: 10px 10px 0px 12px;
+    float:left;
+    border-top-right-radius: 15px;
 }
 
-.messaggio_in {
-    background: #05728f none repeat scroll 0 0;
-    border-radius: 3px;
-    color: white;
-    font-size: 14px;
-    margin: 0;
-    padding: 10px 10px 0px 12px;
-    word-break: break-word;
-    float:left;
-    white-space: pre-line;
+.messaggio_out + .messaggio_out{
+    border-radius: 15px 5px 0px 15px;
+}
+
+.messaggio_in + .messaggio_in{
+    border-radius: 0px 15px 15px 0px;
+}
+
+.messaggio_in:first-of-type{
+    border-bottom-right-radius: 0px;
+}
+
+.messaggio_out:first-of-type{
+    border-bottom-left-radius: 0px;
+}
+
+.messaggio_out:last-of-type {
+    border-bottom-left-radius: 30px;
+}
+
+.messaggio_in:last-of-type {
+    border-bottom-right-radius: 30px;
+}
+
+.messaggio_in:only-of-type, .messaggio_out:only-of-type{
+    border-radius: 15px;
 }
 
 .colonna {
@@ -520,7 +544,7 @@ CHAT CSS
     cursor: pointer;
     display: inline-block;
     transition-duration: 0.4s;
-    margin-top: 5%;
+    /*margin-top: 5%;*/
     margin-bottom: 5%;
     vertical-align: center;
 }
@@ -528,6 +552,11 @@ CHAT CSS
 .btn_snippet:hover {
     background: dodgerblue;
     color: #ffffff;
+}
+
+.btn_out{
+    background: #eee;
+    color: black;
 }
 
 .table_ul{
@@ -546,7 +575,6 @@ CHAT CSS
     position: absolute;
     z-index: -1;
 }
-
 
 /*
 CHAT CSS - SNIPPET
@@ -642,4 +670,24 @@ VIEW DETTAGLIO TICKET
 
 .padding-12{
     padding-bottom: 12%;
+}
+
+.padding-dashboard{
+    padding-bottom: 30%;
+}
+
+hr{
+    /*border: 1px solid black;*/
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    background: black;
+    border-color: black;
+}
+
+hr.out {
+    /*border: 1px solid white;*/
+    color: white;
+    background: white;
+    border-color: white;
 }
