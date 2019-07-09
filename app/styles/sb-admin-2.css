@@ -392,7 +392,7 @@ FOOTER
 
 .my-footer {
     bottom: 0;
-    height: 60px;
+    height: 8.5%;
     width: 100%;
     clear: both;
     position: fixed;
@@ -432,10 +432,6 @@ FOOTER
 /*
 CHAT CSS
 */
-.chat_class{
-    padding-top: 2%;
-}
-
 .textarea_chat{
     width:90%;
     height:50px;
@@ -456,7 +452,7 @@ CHAT CSS
     width: auto;
     left: 250px;    /* aggiunta luigi */
     /*float: right;*/
-    height: 120px;
+    height: 16.5%;
     background: #f8f8f8;
 }
 
@@ -560,7 +556,8 @@ CHAT CSS
 }
 
 .table_ul{
-    margin-bottom: 8%;
+    padding-top: 2%;
+    margin-bottom: 8.5%;
 }
 
 .btn_submit_chat{
