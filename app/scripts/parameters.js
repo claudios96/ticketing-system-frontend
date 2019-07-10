@@ -10,7 +10,7 @@
 mainAngularModule
     .constant('DEBUG', false)
     //.constant('BACKEND_BASE_URL','http://192.168.10.210:8200/esempioisssr')
-    .constant('BACKEND_BASE_URL', 'http://localhost:8200/ticketingsystem')
+    .constant('BACKEND_BASE_URL', 'http://172.20.0.50:8200/ticketingsystem')
     //.constant('BACKEND_BASE_URL','http://localhost:3000')
     .constant('SOFTWARE_PRODUCTS_ENDPOINT_URL', '/targets/')
     .constant('TEAM_ENDPOINT_URL', '/teams/')

@@ -7,7 +7,7 @@
  */
 mainAngularModule.service('httpService', ['$http',
     function ($http) {
-        //let CONNECTION = {url: "http://localhost:8200/ticketsystem"};
+        //let CONNECTION = {url: "http://172.20.0.50:8200/ticketsystem"};
 
         return {
 

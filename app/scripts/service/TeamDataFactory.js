@@ -33,8 +33,8 @@ mainAngularModule
                 $http({
                     method: 'GET',
                     url: _endPointJSON,
-                   //url: 'http://localhost:8200/ticketingsystem/users',
-                   // url: 'http://localhost:8200/ticketingsystem/teams'
+                   //url: 'http://172.20.0.50:8200/ticketingsystem/users',
+                   // url: 'http://172.20.0.50:8200/ticketingsystem/teams'
                 })
                     .then(function (response) {
                         console.log(response);

@@ -10,7 +10,7 @@ mainAngularModule.config(function Config($httpProvider, jwtOptionsProvider, AclS
         tokenGetter: ['AuthFactory', function (AuthFactory) {
             return AuthFactory.getJWTToken();
         }],
-        whiteListedDomains: ['localhost', '10.220.233.144', '192.168.1.11', '10.220.240.230', '192.168.10.210']
+        whiteListedDomains: ['localhost', '10.220.233.144', '192.168.1.11', '10.220.240.230', '192.168.10.210', '172.20.0.50']
     });
 
     $httpProvider.interceptors.push('jwtInterceptor');
