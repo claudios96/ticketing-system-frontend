@@ -55,6 +55,7 @@ mainAngularModule
                         });
                     }, 1000);
                 });
+
             }
 
 

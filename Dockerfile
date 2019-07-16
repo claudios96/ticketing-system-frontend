@@ -10,7 +10,6 @@ RUN apt-get update
 RUN apt-get install -y curl
 RUN apt-get install -y apt-utils
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y curl
 RUN apt-get install -y nodejs
 RUN npm install -y
 RUN npm install -g -y grunt
@@ -22,4 +21,8 @@ RUN bower install -y angular-moment --save --allow-root
 RUN bower install -y angular-highlightjs --save --allow-root
 
 CMD grunt serve
+
 EXPOSE 9000
+#EXPOSE 80
+#EXPOSE 8080
+#EXPOSE 61623
