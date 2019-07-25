@@ -1,11 +1,5 @@
 'use strict';
-/**
- * @ngdoc function
- * @name sbAdminApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the sbAdminApp
- */
+
 
 mainAngularModule
     .controller('ChatCtrl', ['$scope','$state', '$stateParams', 'AuthFactory', 'ChatDataFactory', 'ErrorStateRedirector', 'DTOptionsBuilder',
@@ -15,11 +9,10 @@ mainAngularModule
 
             var ctrl = this;
             var chatData;
-            //var stompClient = null;
             ctrl.messages = [];
-
             var websocketPath = BACKEND_BASE_URL;
 
+            //aggiornamento della lista dei messaggi
             function refreshChatFn(chatData) {
                 console.log('refresh chat');
 
@@ -38,6 +31,7 @@ mainAngularModule
 
             }
 
+            //connessione alla socket
             function connect() {
 
                 var socket;
@@ -59,6 +53,7 @@ mainAngularModule
             }
 
 
+            //inizializzazione della view
             function init() {
                 ctrl.userInfo = AuthFactory.getAuthInfo();
                 ctrl.subject_id = $stateParams.chatId;
@@ -83,7 +78,7 @@ mainAngularModule
             }
 
 
-
+            //invio di messaggi testuali
             function  sendMessageFn() {
                 var params = [Number(ctrl.id), Number(ctrl.userInfo.userId), String('MESSAGE'), String(ctrl.messageContent)];
 
@@ -104,13 +99,10 @@ mainAngularModule
                 // Reset the messageContent input
                 ctrl.messageContent = '';
 
-                //setTimeout(refreshChatFn(chatData), 1000);
-                //scrollToBottomFn();
             }
 
 
             // funzione che mostra la pagina di dettaglio del ticket
-            // TODO : si può migliorare la ricerca del pattern tramite un match su 'ID: * '
             function showTicketDetailFn(id) {
 
                 // estrapolo dalla stringa l'id del ticket
@@ -132,6 +124,7 @@ mainAngularModule
 
             }
 
+            //mostra la text area dove inserire lo snippet di codice
             $scope.showDialogInsertSnippet = function() {
 
                 myService.dataObj = {
@@ -150,7 +143,7 @@ mainAngularModule
                 });
             };
 
-
+            //mostra il testo del ticket inviato
             $scope.showDialogSnippetDetail = function(text) {
                 myService.dataObj = {
                     'snippetText': text
@@ -167,6 +160,7 @@ mainAngularModule
                 });
             };
 
+            //controlla l'esistenza della chat
             function CheckIfChatExistsFn(ticketID) {
                 console.log('CheckIfChatExists chat, ticketID: ', ticketID);
 
@@ -194,7 +188,6 @@ mainAngularModule
             $scope.selectedFile = function (event) {
                 util.getBase64(event.target.files[0])
                     .then(result => {
-                    //file = result;
                     console.log('event', event);
                 uploadFileFn(event.target.files[0].name, result);
                 document.getElementById("file_button").value = "";
@@ -203,6 +196,7 @@ mainAngularModule
             };
 
 
+            //upload del file
             function uploadFileFn(filename, file) {
 
                 console.log('uploadFn()', file);
@@ -230,6 +224,7 @@ mainAngularModule
 
             }
 
+            //download del file
             function getFileFn(chatId, filename) {
 
                 ChatDataFactory.GetFile(chatId, filename,
@@ -244,12 +239,12 @@ mainAngularModule
                         $state.reload();
 
                     }, function (response) {
-                        //ErrorStateRedirector.GoToErrorPage({Messaggio: "Errore nel caricamento del file"})
+                        console.log('Error in download file');
                     });
 
             }
 
-
+            //creazione del link
             function downloadFile(url, filename) {
                 fetch(url).then(function(t) {
                     return t.blob().then((b)=>{
@@ -264,6 +259,7 @@ mainAngularModule
                 });
             }
 
+            //gestisce lo scrolling dell'area dei messaggi
             function scrollToBottomFn() {
                 console.log('SCROLL');
                 $location.hash('scrollToBottom');
@@ -281,19 +277,7 @@ mainAngularModule
             init();
 
         }])
-    /*
-    .directive('myPostRepeatDirective', ['$location', '$anchorScroll', function($location,$anchorScroll) {
-        return function(scope, element, attrs) {
-            console.log('DIRETTIVA');
-            if (scope.$last){
-                // iteration is complete, do whatever post-processing
-                // is necessary
-                $location.hash('scrollToBottom');
-                $anchorScroll();
-            }
-        };
-    }])
-    */
+
 
 .filter('filename', function() {
     return function(filename) {

@@ -24,6 +24,7 @@ mainAngularModule
             thisService.UploadFile = UploadFileFn;
             thisService.GetFile = GetFileFn;
 
+            //get dei messaggi dal server
             function GetMsgsFn(username, type, id, successCB, errorCB) {
 
                 console.log("ChatDataFactory", "getMsgsFn()");
@@ -50,6 +51,7 @@ mainAngularModule
             }
 
 
+            //inserimento di un messaggio
             function InsertFn(userId, text, chatId, successCB, errorCB) {
 
                 console.log("ChatDataFactory", "insertFn()");
@@ -77,7 +79,7 @@ mainAngularModule
                         });
             }
 
-
+            //controlla l'esistenza della chat
             function ChatExistsFn(ticketID, successCB, errorCB) {
 
                 console.log('ChatDataFactory', 'CheckIfChatExists()');
@@ -105,6 +107,7 @@ mainAngularModule
             }
 
 
+            //upload dei file allegati
             function UploadFileFn(data, chatId,  filename,  successCB, errorCB) {
                 console.log('ChatDataFactory', 'UploadFileFn()');
 
@@ -132,6 +135,7 @@ mainAngularModule
                         });
             }
 
+            //get dei file allegati
             function GetFileFn(chatId, filename,successCB, errorCB) {
                 console.log('ChatDataFactory', 'GetFileFn()');
 

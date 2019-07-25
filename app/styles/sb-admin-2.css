@@ -397,7 +397,7 @@ FOOTER
     clear: both;
     position: fixed;
     background-color: #f8f8f8;
-    padding-top: 5px;
+    padding-top: 0.5%;
     padding-right: 2%;
     border-top-style: solid;
     border-top-width: 2px;
@@ -434,7 +434,7 @@ CHAT CSS
 */
 .textarea_chat{
     width:90%;
-    height:50px;
+    height:20%;
     resize: none;
     margin-right: 1%;
     margin-top: 0.5%;
@@ -445,8 +445,7 @@ CHAT CSS
     border-top: 1px solid #E0E0E0;
     position: fixed;
     right: 0;
-    /*bottom: 0;*/
-    bottom: 60px;
+    bottom: 7%;
     /*margin-bottom: 3.8%;*/
     /*width: 83.5%;*/
     width: auto;
@@ -454,6 +453,30 @@ CHAT CSS
     /*float: right;*/
     height: 16.5%;
     background: #f8f8f8;
+}
+
+@media (max-width: 1200px) and (min-width: 400px){
+    #page-wrapper{
+        padding-bottom:10%;
+    }
+    .textarea_chat{
+        width: 70%;
+    }
+}
+
+@media (max-height: 700px) and (min-height: 200px){
+    .message-box{
+        padding-bottom: 8%;
+    }
+}
+
+@media (max-height: 700px) and (max-width: 1200px){
+    #page-wrapper{
+        padding-bottom:8%;
+    }
+    .message-box{
+        padding-bottom: 12%;
+    }
 }
 
 .messaggio{

@@ -7,7 +7,8 @@
  *  @description   Service manages the endpoints for REST API call.
  */
 mainAngularModule.service('restService', function () {
-    let CONNECTION = {url: "http://172.20.0.50:8200/ticketingsystem"};
+    // DOCKER  let CONNECTION = {url: "http://172.20.0.50:8200/ticketingsystem"};
+    let CONNECTION = {url: "http://localhost:8200/ticketingsystem"};
 
     return {
 

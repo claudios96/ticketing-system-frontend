@@ -69,7 +69,7 @@ module.exports = function (grunt) {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         // MODIFICATO PER DOCKER
-        hostname: '0.0.0.0', //'localhost',
+        hostname:  'localhost',//'0.0.0.0',
         livereload: 35729
       },
       livereload: {

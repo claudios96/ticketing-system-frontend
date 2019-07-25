@@ -42,7 +42,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateEquality",
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateEquality",
+                    url: "http://localhost/ticketingsystem/tickets/findTicketForCreateEquality",
+
                     params: params
                 })
                     .then(function (response) {
@@ -68,7 +70,8 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findFatherTicket/" + id,
+                    url: "http://localhost/ticketingsystem/tickets/findFatherTicket/" + id,
+                   // url: "http://172.20.0.50:8200/ticketingsystem/tickets/findFatherTicket/" + id,
                     params: data
                 })
                     .then(function (response) {
@@ -91,7 +94,8 @@ mainAngularModule
 
                 $http({
                     method: 'POST',
-                    url: "http://172.20.0.50:8200/ticketingsystem/gantt/createGanttInstance/" + teamName + "/"+ date +"/"+ durat +"/"+idtick,
+                    url: "http://localhost/ticketingsystem/gantt/createGanttInstance/" + teamName + "/"+ date +"/"+ durat +"/"+idtick,
+                   // url: "http://172.20.0.50:8200/ticketingsystem/gantt/createGanttInstance/" + teamName + "/"+ date +"/"+ durat +"/"+idtick,
                     data: data
                 })
                     .then(function (response) {
@@ -115,7 +119,8 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForGantt/" + team,
+                    url: "http://localhost/ticketingsystem/tickets/findTicketForGantt/" + team,
+                   // url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForGantt/" + team,
                     params: data
                 })
                     .then(function (response) {
@@ -139,7 +144,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/relationInstance/findRelations/" + ticketId,
+                    url: "http://localhost/ticketingsystem/relationInstance/findRelations/" + ticketId,
+
+//                    url: "http://172.20.0.50:8200/ticketingsystem/relationInstance/findRelations/" + ticketId,
                     params: data
                 })
                     .then(function (response) {
@@ -163,7 +170,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/relation",
+                    url: "http://localhost/ticketingsystem/relation",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/relation",
                     params: data
                 })
                     .then(function (response) {
@@ -187,7 +196,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketInQueue",
+                    url: "http://localhost/ticketingsystem/tickets/findTicketInQueue",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketInQueue",
                     params: params
                 })
                     .then(function (response) {
@@ -212,7 +223,9 @@ mainAngularModule
 
                 $http({
                     method: 'POST',
-                    url: "http://172.20.0.50:8200/ticketingsystem/relationInstance/" + data.relation.name + "/" + data.fatherTicket.id + "/" + data.sonTicket.id,
+                    url: "http://localhost/ticketingsystem/relationInstance/" + data.relation.name + "/" + data.fatherTicket.id + "/" + data.sonTicket.id,
+
+                   // url: "http://172.20.0.50:8200/ticketingsystem/relationInstance/" + data.relation.name + "/" + data.fatherTicket.id + "/" + data.sonTicket.id,
                     data: data
                 })
                     .then(function (response) {
@@ -257,7 +270,9 @@ mainAngularModule
 
                 $http({
                     method: 'POST',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/addRegression/" + choose + "/" + idChoose,
+                    url: "http://localhost:8200/ticketingsystem/tickets/addRegression/" + choose + "/" + idChoose,
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/addRegression/" + choose + "/" + idChoose,
                     data: data
                 })
                     .then(function (response) {
@@ -288,7 +303,9 @@ mainAngularModule
 
                 $http({
                     method: 'POST',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/addDependentTicket/"+ idChoose + "/" + choose,
+                    url: "http://localhost:8200/ticketingsystem/tickets/addDependentTicket/"+ idChoose + "/" + choose,
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/addDependentTicket/"+ idChoose + "/" + choose,
                     data: data
                 })
                     .then(function (response) {
@@ -325,7 +342,9 @@ mainAngularModule
 
                 $http({
                     method: 'PUT',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/addEqualityTicket/"+ choose + "/" + data.sameTicket.id,
+                    url: "http://localhost:8200/ticketingsystem/tickets/addEqualityTicket/"+ choose + "/" + data.sameTicket.id,
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/addEqualityTicket/"+ choose + "/" + data.sameTicket.id,
                     data: data
                 })
                     .then(function (response) {
@@ -357,7 +376,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateEquality",
+                    url: "http://localhost:8200/ticketingsystem/tickets/findTicketForCreateEquality",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateEquality",
                     params: params
                 })
                     .then(function (response) {
@@ -382,7 +403,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateRegression",
+                    url: "http://loclhost:8200/ticketingsystem/tickets/findTicketForCreateRegression",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateRegression",
                     params: params
                 })
                     .then(function (response) {
@@ -406,7 +429,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateDependency",
+                    url: "http://localhost:8200/ticketingsystem/tickets/findTicketForCreateDependency",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/findTicketForCreateDependency",
                     params: params
                 })
                     .then(function (response) {
@@ -431,7 +456,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/relation",
+                    url: "http://localhost:8200/ticketingsystem/relation",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/relation",
                     params: params
                 })
                     .then(function (response) {
@@ -456,7 +483,9 @@ mainAngularModule
 
                 $http({
                     method: 'POST',
-                    url: "http://172.20.0.50:8200/ticketingsystem/escalation",
+                    url: "http://localhost:8200/ticketingsystem/escalation",
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/escalation",
                     data: data
                 })
                     .then(function (response) {
@@ -480,7 +509,9 @@ mainAngularModule
 
                 $http({
                     method: 'POST',
-                    url: "http://172.20.0.50:8200/ticketingsystem/relation/"+ data.name,
+                    url: "http://localhost:8200/ticketingsystem/relation/"+ data.name,
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/relation/"+ data.name,
                     data: data
                 })
                     .then(function (response) {
@@ -502,7 +533,9 @@ mainAngularModule
 
                 $http({
                     method: 'GET',
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets",
+                    url: "http://localhost/ticketingsystem/tickets",
+
+//                    url: "http://172.20.0.50:8200/ticketingsystem/tickets",
                     params: params
                 })
                     .then(function (response) {
@@ -525,7 +558,9 @@ mainAngularModule
                 //alert("http://172.20.0.50:8200/ticketingsystem/tickets/" + idTicket);
                 $http({
                     method: "GET",
-                    url: "http://172.20.0.50:8200/ticketingsystem/tickets/" + idTicket,
+                    url: "http://localhost/ticketingsystem/tickets/" + idTicket,
+
+                    //url: "http://172.20.0.50:8200/ticketingsystem/tickets/" + idTicket,
                     params: data
                 })
                     .then(function (response) {
@@ -549,7 +584,9 @@ mainAngularModule
             function getTeamsByTeamMember(username, successCB, errorCB) {
                 $http({
                     method: "GET",
-                    url: "http://172.20.0.50:8200/ticketingsystem/teams/findAllTeamsByPerson/" + username,
+                    url: "http://localhost/ticketingsystem/teams/findAllTeamsByPerson/" + username,
+
+                   // url: "http://172.20.0.50:8200/ticketingsystem/teams/findAllTeamsByPerson/" + username,
                     //params: data
                 })
                     .then(function (response) {

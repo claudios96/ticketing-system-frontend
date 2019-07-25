@@ -53,16 +53,7 @@
                                             ng-click="ctrl.downloadAttachedFiles(t.id)">
                                         <i class="glyphicon glyphicon-floppy-save"></i>
                                     </button>
-                                    <!--<button class="btn btn-xl btn-success" title="Dettaglio ticket"
-                                            ng-click="ctrl.stateEditTicket(t.id)">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
 
-                                    <button class="btn btn-xl btn-danger" title="Revoca ticket"
-                                            ng-click="ctrl.unassignTicketFromAssistant(t.id,ctrl.userInfo.userId)">
-                                        <i class="fa fa-close"></i>
-                                    </button>
-                                    -->
                                 </td>
 
                                 <td ng-controller="ChatCtrl as chatctrl" ng-show="chatctrl.userInfo.userRole == 'TEAM_LEADER' || chatctrl.userInfo.userRole == 'TEAM_MEMBER'">

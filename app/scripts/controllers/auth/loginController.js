@@ -47,6 +47,7 @@ mainAngularModule
                     }
                     else {
                         console.error(response);
+                        console.log('error is ' + response.data);
                         ctrl.authMessage = 'No response from server';
                     }
                 }
